@@ -1,0 +1,95 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+#spam a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+body {
+    margin: 0;
+    margin-top: 5vh;
+    box-sizing: border-box;
+    background: #1b1f25;
+    color: white;
+    /*display: flex;
+    justify-content: space-around;*/
+}
+
+#titular {
+    text-align: center;
+    margin: 5vh 15vw 1vh 15vw;
+    width: 70vw;
+    height: 40vh;
+    padding-top: 1rem;
+    background-image: url(../images/Logo2.png);
+    background-position: center;
+    background-size: cover;
+}
+
+#titular h2 {
+    color: #1b1f25;
+    text-transform: uppercase;
+}
+
+#contTitular {
+    display: flex;
+    justify-content: space-between;
+}
+
+#spam {
+    margin: auto 0;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+#render {
+    width: 12rem;
+    padding-left: 2rem;
+}
+
+#menu {
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+#menu h3 {
+    color: #fefcff;
+    text-align: center;
+}
+
+#menu #submenu {
+    display: flex;
+    justify-content: space-around;
+}
+
+#menu #submenu .contSubmenu {
+    text-align: center;
+    margin: 1rem 0;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contSubmenu a {
+    color: #1b1f25;
+    background-color: #fefcff;
+    padding: 0.5rem;
+    border-radius: 1em;
+    cursor: pointer;
+    width: 60%;
+    margin: auto;
+}
+
+.icono {
+    margin: auto;
+    width: 7.5rem;
+    cursor: pointer;
+}
