@@ -7,7 +7,10 @@
 ---
 
 Guia para instalar esta madre:
-1. En teoria, las dependencias de **Node.js estan incluidas en la carpeta node_modules**.
+1. Instalar dependencias de npm: 
+
+>npm install
+
 2. Las dependencias de Python pueden ser instaladas de la siguiente manera:
 
 **Windows:**
