@@ -26,6 +26,7 @@ import imutils
 
 img = sys.argv[1]
 ide = sys.argv[2]
+esEscan = sys.argv[3]
 
 def principal():
     imgBase = ""
@@ -49,7 +50,7 @@ def principal():
         print("Le tuviste miedo al exito")
         exit()
 
-def Non_Zero(ruta_Imagen, ide):
+def Non_Zero(ruta_Imagen, ide, esEscan):
     # Definimos las respuestas correctas del examen.
     respuestas_Correctas = {}
 
@@ -111,8 +112,12 @@ def Non_Zero(ruta_Imagen, ide):
                 break
 
     # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada.
-    base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
-    recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
+    if esEscan == "true":
+        base = imagen # four_point_transform(imagen, num_Contornos.reshape(4, 2))
+        recortado = escala_Grises #four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
+    elif esEscan == "false":
+        base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
+        recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
     umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
@@ -181,5 +186,5 @@ def Non_Zero(ruta_Imagen, ide):
 
 # Declaración de una función para que se ejecuté el codigo.
 # principal()
-print(Non_Zero(img, ide))
+print(Non_Zero(img, ide, esEscan))
 sys.stdout.flush()

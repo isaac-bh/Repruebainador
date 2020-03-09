@@ -39,7 +39,7 @@ h1 {
 
 #holder {
 	margin: auto;
-	padding: 4rem 2px 3rem 2px;
+	padding: 3rem 2px 3rem 2px;
 	border: 2px dashed #31353b;
 	text-align: center;
 	align-items: center;
@@ -55,7 +55,7 @@ h1 {
 	height: 50vh;
 	justify-content: flex-start;
 	background-color: #82b0e4;
-	padding-top: 6.5vh;
+	padding-top: 5vh;
 	border-radius: 15px;
 	width: 30vw;
 	color: #31353b;
@@ -145,4 +145,26 @@ h1 {
 
 .noValidado {
 	box-shadow: 0px 0px 12px red;
+}
+
+#return {
+	width: 50px;
+	position: absolute;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/check_radio_sheet.png) left 0 top no-repeat;
+	cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+	background: url(../images/check_radio_sheet.png) -19px top no-repeat;
 }

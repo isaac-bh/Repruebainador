@@ -9,6 +9,7 @@ const {dialog} = require('electron').remote
 
 // Función que llama a main.py para calcular la calificación del alumno.
 function calcular() {
+  var scan = String(document.getElementById("esEscaneada").checked);
   // Obtenemos la ruta de la imagen a escanear.
   var img = document.getElementById("oculto").innerHTML;
   // Guardamos un campo de la página para mostrar resultados posteriormente.
@@ -27,7 +28,7 @@ function calcular() {
         pythonPath: 'python', // Busca en el sistema si reconoce el comando Python.
         pythonOptions: ['-u'],
         scriptPath: 'C:/Users/isaac/Documents/Electron/static/python', // Carpeta donde tenemos los scripts de Python.
-        args: [img, id] // Valor a pasar.
+        args: [img, id, scan] // Valor a pasar.
       };
 
     // Ejecutamos Python.
