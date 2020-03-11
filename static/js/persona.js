@@ -31,6 +31,16 @@ function calcular() {
         args: [img, id, scan] // Valor a pasar.
       };
 
+      document.getElementById("main").style.opacity = "0";
+      document.getElementById("main").style.visibility = "hidden";
+
+      document.getElementById("loader").style.opacity = "1";
+      setTimeout(function(){ 
+        document.getElementById("loader").style.opacity = "0";
+
+        document.getElementById("main").style.visibility = "visible";
+        document.getElementById("main").style.opacity = "1";
+      }, 5000);
     // Ejecutamos Python.
     PythonShell.run('main.py', options, function (error, resultados) {
       // Si existe un error, lo imprime en un alert.
