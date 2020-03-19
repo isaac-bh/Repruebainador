@@ -24,11 +24,11 @@ function calcular() {
   else {
     // Declaramos opciones para que funcione optimamente la comunicación entre Python y JavaScript.
     var options = {
-        mode: 'text', // Modo de texto.
-        pythonPath: 'python', // Busca en el sistema si reconoce el comando Python.
+        mode: 'text', 
+        pythonPath: 'python',
         pythonOptions: ['-u'],
-        scriptPath: 'C:/Users/isaac/Documents/Electron/static/python', // Carpeta donde tenemos los scripts de Python.
-        args: [img, id, scan] // Valor a pasar.
+        scriptPath: 'C:/Users/isaac/Documents/Electron/static/python', 
+        args: [img, id, scan] 
       };
 
       document.getElementById("main").style.opacity = "0";

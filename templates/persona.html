@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Proyecto Manhattan</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/persona.css">
@@ -7,42 +8,44 @@
 	<script src="../static/js/persona.js" charset="utf-8"></script>
 	<script type="text/javascript">
 		// Evento para arrastrar imagen.
-      	document.addEventListener('drop', (e) => {
-        	e.preventDefault();
-        	e.stopPropagation();
+		document.addEventListener('drop', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
 
 			// Bucle: obtiene la ruta de los archivos dejados.
-        	for (const f of e.dataTransfer.files) {
-				var ruta = f.path;											// Se gurda el path en una variable.
-				var nameFile = ""; 											// Se declara una variable auxiliar para guardar unicamente el nombre y extension de la imagen.
-				var nombreFixed = "";										// Se declara otra variable para acomodar el nombre, porque lo guarda al revés.
-				for(var i = ruta.length; i > 0; i--){						// Bucle: inicia i en el ultimo lugar de la cadena ruta.
-					if(ruta[i-1] == "\\"){									// Si ruta
+			for (const f of e.dataTransfer.files) {
+				var ruta = f.path; 
+				var nameFile, nombreFixed = ""; 
+				for (var i = ruta.length; i > 0; i--) { 
+					if (ruta[i - 1] == "\\") { 
 						break;
 					}
-					nameFile += ruta[i-1];
+					nameFile += ruta[i - 1];
 				}
-				for(var x = nameFile.length; x > 0; x--) {
-					nombreFixed += nameFile[x-1];
+				for (var x = nameFile.length; x > 0; x--) {
+					nombreFixed += nameFile[x - 1];
 				}
 
-		  	document.getElementById("oculto").innerHTML=f.path;
-		  	document.getElementById("holder").innerHTML = '<img src="'+f.path+'" alt="" id="previo">';
-		  	document.getElementById("holder").innerHTML += nombreFixed;
-        }
-	  });
-	  // Deja de seguir el cursor para que ya no arrastre nada.
-      document.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      });
-    </script>
+				document.getElementById("oculto").innerHTML = f.path;
+				document.getElementById("holder").innerHTML = '<img src="' + f.path + '" alt="" id="previo">';
+				document.getElementById("holder").innerHTML += nombreFixed;
+			}
+		});
+		// Deja de seguir el cursor para que ya no arrastre nada.
+		document.addEventListener('dragover', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	</script>
 </head>
+
 <body>
 	<section id="loader">
 		<span>Estamos trabajando en ello...</span>
 		<img src="../static/images/Icono.png" style="width: 125px">
-		<div class="barra-progreso"><div class="animacion-barra"></div></div>
+		<div class="barra-progreso">
+			<div class="animacion-barra"></div>
+		</div>
 	</section>
 	<main id="main">
 		<a href="index.html"><img src="../static/images/return.png" alt="Regresar" id="return"></a>
@@ -60,14 +63,14 @@
 					<span id="obtenerExamen" onclick="validarExamen()">VALIDAR</span>
 				</div>
 				<div id="holder">
-					<img src="../static/images/Icono.png" alt="" id="previo">	
-					Arrastre su archivo hacia aqui.  
+					<img src="../static/images/Icono.png" alt="" id="previo">
+					Arrastre su archivo hacia aqui.
 				</div>
-				
+
 				<span id="oculto" style="display: none;"></span>
 				<div id="controles">
 					<span id="calcular" onclick="calcular()">CALCULAR</span>
-				</div>			
+				</div>
 			</div>
 			<div id="resultado">
 				<p>Nombre del alumno: <span id="alumnoRes"></span></p>
@@ -77,4 +80,5 @@
 		</div>
 	</main>
 </body>
+
 </html>

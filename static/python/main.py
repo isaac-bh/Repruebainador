@@ -28,28 +28,6 @@ img = sys.argv[1]
 ide = sys.argv[2]
 esEscan = sys.argv[3]
 
-def principal():
-    imgBase = ""
-    imgComparacion = ""
-    print("Hola, bienvenido a:")
-    print('''
-        ███████╗██╗░░░░░    ██████╗░███████╗██████╗░██████╗░██╗░░░██╗███████╗██████╗░░█████╗░██╗███╗░░██╗░█████╗░██████╗░░█████╗░██████╗░
-        ██╔════╝██║░░░░░    ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║░░░██║██╔════╝██╔══██╗██╔══██╗██║████╗░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗
-        █████╗░░██║░░░░░    ██████╔╝█████╗░░██████╔╝██████╔╝██║░░░██║█████╗░░██████╦╝███████║██║██╔██╗██║███████║██║░░██║██║░░██║██████╔╝
-        ██╔══╝░░██║░░░░░    ██╔══██╗██╔══╝░░██╔═══╝░██╔══██╗██║░░░██║██╔══╝░░██╔══██╗██╔══██║██║██║╚████║██╔══██║██║░░██║██║░░██║██╔══██╗
-        ███████╗███████╗    ██║░░██║███████╗██║░░░░░██║░░██║╚██████╔╝███████╗██████╦╝██║░░██║██║██║░╚███║██║░░██║██████╔╝╚█████╔╝██║░░██║
-        ╚══════╝╚══════╝    ╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝░░╚═╝░╚═════╝░╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝
-    ''')
-    print("1. Iniciar mazacre. ")
-    print("2. Salir. ")
-    x = int(input("Porfavor, elige una opción para empezar: "))
-
-    if x == 1:
-        Non_Zero(input("Por favor, ingresa la ruta de la imagen a calificar: "))
-    else:
-        print("Le tuviste miedo al exito")
-        exit()
-
 def Non_Zero(ruta_Imagen, ide, esEscan):
     # Definimos las respuestas correctas del examen.
     respuestas_Correctas = {}
@@ -86,9 +64,25 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
     imagen = cv2.imread(ruta_Imagen)
+    #
+    cv2.imshow("Previsualización", imagen)
+    cv2.waitKey(0)
+    #
     escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+    #
+    cv2.imshow("Previsualización", escala_Grises)
+    cv2.waitKey(0)
+    #
     desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
+    #
+    cv2.imshow("Previsualización", desenfocado)
+    cv2.waitKey(0)
+    #
     bordeado = cv2.Canny(desenfocado, 75, 200)
+    #
+    cv2.imshow("Previsualización", bordeado)
+    cv2.waitKey(0)
+    #
 
     # Encontramos contornos en el "mapa de contornos", inicializamos el contorno de la hoja para darle perspectiva.
     contornos = cv2.findContours(bordeado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -113,14 +107,22 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada.
     if esEscan == "true":
-        base = imagen # four_point_transform(imagen, num_Contornos.reshape(4, 2))
-        recortado = escala_Grises #four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
+        base = imagen 
+        recortado = escala_Grises
     elif esEscan == "false":
         base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
+        #
+        cv2.imshow("Previsualización", base)
+        cv2.waitKey(0)
+        #
         recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
     umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+    #
+    cv2.imshow("Previsualización", umbral)
+    cv2.waitKey(0)
+    #
 
     # Encontramos contornos en la imagen binarizada, inicializamos la lista de contornos que corresponden a las preguntas.
     contornos = cv2.findContours(umbral.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -154,11 +156,11 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
             mascara_Recorte = np.zeros(umbral.shape, dtype="uint8")
             cv2.drawContours(mascara_Recorte, [c], -1, 255, -1)
 
-            # Detectamos pixeles negativos para identificar el inciso contestado.
+            # Detectamos pixeles no negativos para identificar el inciso contestado.
             mascara_Recorte = cv2.bitwise_and(umbral, umbral, mask=mascara_Recorte)
             total = cv2.countNonZero(mascara_Recorte)
 
-            # Si la respuesta actual tiene el mayor numero de pixeles negativos la marcamos como el inciso contestado.
+            # Si la respuesta actual tiene el mayor numero de pixeles no negativos la marcamos como el inciso contestado.
             if respondida is None or total > respondida[0]:
                 respondida = (total, j)
 
@@ -180,11 +182,10 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     # Se imprime, {:.2f} sirve para que solo muestre los dos primeros numeros despues de el punto decimal, f es de float.
     # .format(calificacion) es lo que debe de imprimir en lugar de {:.2f}.
     #print("Calificación: {:.2f}%".format(calificacion))
-    #cv2.imshow("Exam", base)
-    #cv2.waitKey(0)
+    cv2.imshow("Exam", base)
+    cv2.waitKey(0)
     return str(calificacion)
 
 # Declaración de una función para que se ejecuté el codigo.
-# principal()
 print(Non_Zero(img, ide, esEscan))
 sys.stdout.flush()
