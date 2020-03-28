@@ -23,6 +23,5 @@ def validacionExamen(id):
         if aux == id:
             return "True"
 
-#print(validacionExamen(input("ID: ")))
 print(validacionExamen(id))
 sys.stdout.flush()

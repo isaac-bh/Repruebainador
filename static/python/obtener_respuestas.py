@@ -18,13 +18,17 @@ from imutils import contours
 import numpy as np
 import argparse
 import imutils
+import sys
 
-def Non_Zero(ruta_Imagen, scaned, id):
+img = sys.argv[1]
+es_escaneada = sys.argv[2]
+
+def Non_Zero(img, es_escaneada):
     # Definimos las respuestas correctas del examen.
     respuestas_Correctas = ""
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
-    imagen = cv2.imread(ruta_Imagen)
+    imagen = cv2.imread(img)
     escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
     bordeado = cv2.Canny(desenfocado, 75, 200)
@@ -51,14 +55,13 @@ def Non_Zero(ruta_Imagen, scaned, id):
                 break
     
     # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada. 
-    if scaned == 1:
+    if es_escaneada == "true":
         base = imagen # four_point_transform(imagen, num_Contornos.reshape(4, 2))
         recortado = escala_Grises #four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
-    elif scaned == 2:
+    elif es_escaneada == "false":
         base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
         recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
     else:
-        print("Ya no vas a usar este programa por pendejo.")
         exit()
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
@@ -108,10 +111,7 @@ def Non_Zero(ruta_Imagen, scaned, id):
         color = (0, 0, 255)
         respuestas_Correctas += str(respondida[1])
 
-    archivo = open("C:\\Users\\isaac\\Documents\\Electron\\static\\python\\respuestasExamenes.txt", "a")
-    archivo.write("\n" + id + ":" + respuestas_Correctas + ".")
+    print(respuestas_Correctas)
 
-ruta_Imagen = input("Ruta: ")
-scaned = int(input("¿Es escaneada? 1 si, 2 no: "))
-id = input("ID a desear: ")
-Non_Zero(ruta_Imagen, scaned, id)
+
+Non_Zero(img, es_escaneada)
