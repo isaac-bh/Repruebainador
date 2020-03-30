@@ -63,26 +63,10 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
         respuestas_Correctas[x] = int(diccionario[x])
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
-    imagen = cv2.imread(ruta_Imagen)
-    #
-    cv2.imshow("Previsualización", imagen)
-    cv2.waitKey(0)
-    #
+    imagen = cv2.imread(ruta_Imagen)  
     escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
-    #
-    cv2.imshow("Previsualización", escala_Grises)
-    cv2.waitKey(0)
-    #
     desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
-    #
-    cv2.imshow("Previsualización", desenfocado)
-    cv2.waitKey(0)
-    #
     bordeado = cv2.Canny(desenfocado, 75, 200)
-    #
-    cv2.imshow("Previsualización", bordeado)
-    cv2.waitKey(0)
-    #
 
     # Encontramos contornos en el "mapa de contornos", inicializamos el contorno de la hoja para darle perspectiva.
     contornos = cv2.findContours(bordeado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -111,18 +95,10 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
         recortado = escala_Grises
     elif esEscan == "false":
         base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
-        #
-        cv2.imshow("Previsualización", base)
-        cv2.waitKey(0)
-        #
         recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
     umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
-    #
-    cv2.imshow("Previsualización", umbral)
-    cv2.waitKey(0)
-    #
 
     # Encontramos contornos en la imagen binarizada, inicializamos la lista de contornos que corresponden a las preguntas.
     contornos = cv2.findContours(umbral.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -182,8 +158,6 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     # Se imprime, {:.2f} sirve para que solo muestre los dos primeros numeros despues de el punto decimal, f es de float.
     # .format(calificacion) es lo que debe de imprimir en lugar de {:.2f}.
     #print("Calificación: {:.2f}%".format(calificacion))
-    cv2.imshow("Exam", base)
-    cv2.waitKey(0)
     return str(calificacion)
 
 # Declaración de una función para que se ejecuté el codigo.

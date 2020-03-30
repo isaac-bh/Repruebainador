@@ -8,8 +8,9 @@ body {
 	display: flex;
 	justify-content: space-around;
 	flex-direction: column;
-	height: 100vh;
+	height: 97vh;
 	padding: 3rem;
+	padding-left: 3vh;
 	background: #1b1f25;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -34,7 +35,7 @@ h1 {
 	text-align: center;
 	border-radius: 15px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 #holder {
@@ -57,7 +58,7 @@ h1 {
 	background-color: #82b0e4;
 	padding-top: 5vh;
 	border-radius: 15px;
-	width: 30vw;
+	width: 25vw;
 	color: #31353b;
 }
 

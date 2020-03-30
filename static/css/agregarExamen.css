@@ -117,13 +117,14 @@ input[type="checkbox"]:checked + label span {
 
 #cont {
 	margin: auto;
-	padding: 3rem 2px 3rem 2px;
+	padding: 3rem 2px 0 2px;
 	border: 2px dashed #31353b;
 	text-align: center;
 	align-items: center;
     width: 90%;
-    height: 75%;
+    height: 60vh;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.75);
 }
