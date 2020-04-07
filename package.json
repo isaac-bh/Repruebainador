@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . --out=dist/win --platform=win32 --arch=x64 --icon=Archivos/Imagenes/Milos.ico --asar=true --overwrite"
+    "build": "electron-packager . --out=dist/win --platform=win32 --arch=x64 --icon=Archivos/Imagenes/Milos.ico --asar=true --overwrite",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [

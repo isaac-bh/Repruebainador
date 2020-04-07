@@ -7,8 +7,9 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 1920,
     height: 1000,
-    //autoHideMenuBar: true,
+    autoHideMenuBar: true,
     frame: true,
+    titleBarStyle: 'hidden',
     icon: path.join(__dirname, './static/images/icono.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),

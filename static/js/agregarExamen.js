@@ -17,7 +17,7 @@ function obtener_respuestas() {
             mode: 'text',
             pythonPath: 'python',
             pythonOptions: ['-u'],
-            scriptPath: 'C:/Users/isaac/Documents/Electron/static/python',
+            scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
             args: [ruta_imagen, scan]
         };
 
@@ -104,13 +104,14 @@ function agregar_respuestas() {
         mode: 'text',
         pythonPath: 'python',
         pythonOptions: ['-u'],
-        scriptPath: 'C:/Users/isaac/Documents/Electron/static/python',
+        scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
         args: [ruta_imagen]
     };
 
     PythonShell.run('agregar_respuestas.py', options, function (error, resultados) {
         if (error) {
-            dialog.showErrorBox('Error 11:', 'Consulta el manual de usuario para ver que puede causar este error.'); 
+            dialog.showErrorBox('Error 11:', 'Consulta el manual de usuario para ver que puede causar este error.');
+            console.log(error);
         }
 
         else {

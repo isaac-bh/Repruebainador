@@ -21,7 +21,7 @@ function calcular() {
       mode: 'text',
       pythonPath: 'python',
       pythonOptions: ['-u'],
-      scriptPath: 'C:/Users/isaac/Documents/Electron/static/python',
+      scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
       args: [img, id, scan]
     };
 
@@ -36,14 +36,18 @@ function calcular() {
       document.getElementById("main").style.opacity = "1";
     }, 5000);
     // Ejecutamos Python.
-    PythonShell.run('main.py', options, function (error, resultados) {
+    PythonShell.run('calificar_persona.py', options, function (error, resultados) {
       // Si existe un error, lo imprime en un alert.
       if (error) {
         dialog.showErrorBox('Error 2-5:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+        console.log(error);
       }
 
       // Convertimos el resultado obtenido devuelto por Python a Float para manejarlo más facil.
-      x = parseFloat(resultados);
+      x = parseFloat(resultados[1]);
+      nombre = toString(resultados[0]);
+
+      document.getElementById("alumnoRes").innerHTML = nombre;
 
       // Si x es mayor o igual a 60, esta aprobado, de lo contrario esta reprobado.
       if (x >= 60) {
@@ -68,15 +72,16 @@ function validarExamen() {
     mode: 'text', // Modo de texto.
     pythonPath: 'python', //Reconocimiento de sistema para el comando python.
     pythonOptions: ['-u'],
-    scriptPath: 'C:/Users/isaac/Documents/Electron/static/python', // Carpeta donde guardamos los scripts python.
+    scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python', // Carpeta donde guardamos los scripts python.
     args: [id] // Valor a pasar.
   };
 
   // Ejecutamos Python.
-  PythonShell.run('validarExamen.py', options, function (error, resultados) {
+  PythonShell.run('validar_examen.py', options, function (error, resultados) {
     // Si existe un error, lo imprime en un alert.
     if (error) {
       dialog.showErrorBox('Error 6:', 'Fallo Python, amén.');
+      console.log(error)
     }
 
     // Si el resultado devuelto por Python es True, se añade la clase validado. Si no, se añade la clase noValidado

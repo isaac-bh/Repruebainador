@@ -1,11 +1,13 @@
 import sys
 import random
+import os
 
 respuestas_examen = sys.argv[1]
+ruta_archivo = "C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python/respuestasExamenes.txt"
 
 def escribir_respuestas(respuestas_examen):
     random_id = generar_id()
-    archivo = open("C:\\Users\\isaac\\Documents\\Electron\\static\\python\\respuestasExamenes.txt", "a")
+    archivo = open(ruta_archivo, "a")
     archivo.write("\n" + random_id + ":" + respuestas_examen + ".")
     print(random_id)
 
@@ -16,7 +18,7 @@ def generar_id():
     for x in range(0,5):
         identificador += random.choice(lista)
     
-    archivo = open("C:\\Users\\isaac\\Documents\\Electron\\static\\python\\respuestasExamenes.txt", "r")
+    archivo = open(ruta_archivo, "r")
     for linea in archivo.readlines():
         aux = ""
         # Bucle: por cada caracter dentro de la linea.
