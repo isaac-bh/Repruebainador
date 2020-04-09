@@ -2,6 +2,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 a {
     text-decoration: none;
 }
@@ -14,19 +18,21 @@ a {
 
 body {
     margin: 0;
-    margin-top: 12.5vh;
     box-sizing: border-box;
-    background: #1b1f25;
+    background: #292e30;
     color: white;
-    /*display: flex;
-    justify-content: space-around;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 #titular {
     text-align: center;
-    margin: 5vh 15vw 1vh 15vw;
-    width: 70vw;
-    height: 40vh;
+    margin: auto;
+    width: 60vw;
+    height: 30vh;
     padding-top: 1rem;
     background-image: url(../images/Logo2.png);
     background-position: center;
@@ -73,9 +79,22 @@ body {
 #menu #submenu .contSubmenu {
     text-align: center;
     margin: 1rem 0;
-    width: 33%;
+    width: 17.5%;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
+    border-radius: 25px;
+    border: 2px solid #343c3f;
+    transition: border 0.75s;
+    box-shadow: 2px 7px 20px -4px rgba(30,34,35,1);
+}
+
+#menu #submenu .contSubmenu:hover {
+    border: 2px solid #118af7;
+}
+
+#menu #submenu .contSubmenu:hover > a {
+    background-color: #118af7;
 }
 
 .contSubmenu a {
@@ -86,10 +105,95 @@ body {
     cursor: pointer;
     width: 60%;
     margin: auto;
+    transition: background 0.75s;
 }
 
 .icono {
     margin: auto;
     width: 7.5rem;
     cursor: pointer;
+}
+
+section {
+    width: 96vw;
+    padding-top: 2rem;
+    background-color: #292e30;
+    z-index: 1;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-left: 2px solid #343c3f;
+}
+
+/* --- --- --- --- --- NeoBar --- --- --- --- --- */
+@font-face {
+    font-family: 'fontello';
+    src: url('../fonts/font/fontello.eot?50788721');
+    src: url('../fonts/font/fontello.eot?50788721#iefix') format('embedded-opentype'),
+         url('../fonts/font/fontello.woff?50788721') format('woff'),
+         url('../fonts/font/fontello.ttf?50788721') format('truetype'),
+         url('../fonts/font/fontello.svg?50788721#fontello') format('svg');
+}
+
+.demo-icon {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      display: inline-block;
+      text-decoration: inherit;
+      width: 100%;
+      text-align: center;
+}
+
+#neobar {
+    width: 4vw;
+    height: 100vh;
+    background-color: #292e30;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#neobar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 3rem;
+}
+
+#neobar ul li {
+    height: 3rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    width: 4vw;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+#neobar ul li:hover {
+    background-color: #28333c;
+}
+
+#neobar ul li:hover > a {
+    color: #118af7;
+}
+
+#neobar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+}
+
+#logo_principal {
+    width: 4rem;
+    height: 3rem;
+    padding-top: 1rem;
+    border-bottom: 2px solid #343c3f;
+    text-align: center;
+}
+
+#logo_principal img {
+    cursor: pointer;
+    width: 2rem;
 }

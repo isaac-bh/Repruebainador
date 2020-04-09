@@ -34,6 +34,8 @@ from os import remove
 img = sys.argv[1]
 ide = sys.argv[2]
 esEscan = sys.argv[3]
+ruta_absoluta = os.getcwd()
+ruta_archivo = ruta_absoluta + "/static/python/respuestasExamenes.txt"
 
 def Non_Zero(ruta_Imagen, ide, esEscan):
     # Inicialización de imagen con tamaño corregido.
@@ -173,7 +175,7 @@ def obtener_nombre():
 def obtener_respuestas():
     respuestas_correc = {}
     diccionario = ""
-    respuestas = open("C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python/respuestasExamenes.txt", "r")
+    respuestas = open(ruta_archivo, "r")
     for linea in respuestas.readlines():
         aux = ""
         # Bucle: por cada caracter dentro de la linea.
