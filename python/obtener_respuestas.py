@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#_*_ coding: utf-8 _*_
+
 ##################################################################
 ##################################################################
 ##  FUNCION PARA AGREGAR EXAMENES NUEVOS EN BASE A UNA IMAGEN   ##

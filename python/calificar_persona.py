@@ -1,4 +1,5 @@
-#
+#!/usr/bin/env python
+#_*_ coding: utf-8 _*_
 # HORAS GASTADAS EN ESTA MIERDA: 28 Y CONTANDO.
 # FECHA DE CREACIÓN: 12 DE ENERO DE 2020.
 # Autor: Isaac Alain Benavides Hernandez.
