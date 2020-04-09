@@ -24,8 +24,13 @@ Guia para instalar esta madre:
 
 ---
 # Por hacer:
-    - [ ] Detección de datos de estudiante mediante OCR.
+    - [ X ] Detección de datos de estudiante mediante OCR.
     - [ ] Ingreso de datos de estudiante y calificación obtenida en algun archivo.
     - [ ] Producción en serie.
 
 ![Logotipo](static/images/Logo2.png)
+
+# Patch notes:
+**Versión 2.1.0 _(09/04/2020)_:** Terminada la función para calificar un examen de multiples columnas, falta que obtenga el código del alumno. Todo el resto de función esta totalmente integrada a la Interfaz Grafica. Tambien ya se eliminan los archivos residuales que generaba el programa para poder operar.
+
+_Agradecimientos especiales a Stack Overflow y a mi abuelita._

@@ -45,19 +45,19 @@ function calcular() {
 
       // Convertimos el resultado obtenido devuelto por Python a Float para manejarlo más facil.
       x = parseFloat(resultados[1]);
-      nombre = toString(resultados[0]);
+      console.log(resultados[2]);
 
-      document.getElementById("alumnoRes").innerHTML = nombre;
+      document.getElementById("alumnoRes").innerHTML = resultados[0];
 
       // Si x es mayor o igual a 60, esta aprobado, de lo contrario esta reprobado.
       if (x >= 60) {
         mostrarResultado.classList.remove("reprobado");
         mostrarResultado.classList.add("aprobado");
-        mostrarResultado.innerHTML = resultados;
+        mostrarResultado.innerHTML = x;
       } else {
         mostrarResultado.classList.remove("aprobado");
         mostrarResultado.classList.add("reprobado");
-        mostrarResultado.innerHTML = resultados;
+        mostrarResultado.innerHTML = x;
       }
     });
   }
