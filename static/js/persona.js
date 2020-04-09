@@ -21,6 +21,7 @@ function calcular() {
       mode: 'text',
       pythonPath: 'python',
       pythonOptions: ['-u'],
+      scriptPath: 'python', // Carpeta donde guardamos los scripts python.
       args: [img, id, scan]
     };
 
@@ -81,7 +82,6 @@ function validarExamen() {
     if (error) {
       dialog.showErrorBox('Error 6:', 'Fallo Python, amén.');
       console.log(error);
-      console.log(resultados[0]);
     }
 
     // Si el resultado devuelto por Python es True, se añade la clase validado. Si no, se añade la clase noValidado
