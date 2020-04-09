@@ -49,13 +49,19 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     crop_img = img[160:225, 328:1000]
     cv2.imwrite('nombre.png', crop_img)
 
+    #Recorte del codigo
+    img = cv2.imread('ajuste.png')
+    crop_img = img[220:270, 320:500]
+    cv2.imwrite('codigo.png', crop_img)
+
     #Leer el nombre de quien hizo el examen
     nombre = obtener_nombre()
+    codigo = obtener_codigo()
     respuestas_Correctas = obtener_respuestas()
     recortar_imagen(img)
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
-    imagen = cv2.imread("fila.png")  
+    imagen = cv2.imread("fila.png")
     escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
     bordeado = cv2.Canny(desenfocado, 75, 200)
@@ -83,7 +89,7 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada.
     if esEscan == "true":
-        base = imagen 
+        base = imagen
         recortado = escala_Grises
     elif esEscan == "false":
         base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
@@ -148,6 +154,7 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     # En base a el numero de preguntas y a los aciertos, calculamos su calificación.
     calificacion = (correctas / len(respuestas_Correctas)) * 100
     print(nombre)
+    print(codigo)
     print(calificacion)
     print(correctas)
     eliminar_residuales()
@@ -168,7 +175,15 @@ def obtener_nombre():
     nombre = pytesseract.image_to_string(PIL.Image.open('nombre.png').convert("RGB"), lang='eng', config='--psm 4 --oem 3')
     return nombre
 
+def obtener_codigo():
+    os = platform.system()
 
+    if os == "Windows":
+        pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract'
+        TESSDATA_PREFIX = 'C:/Program Files/Tesseract-OCR'
+
+    codigo = pytesseract.image_to_string(PIL.Image.open('codigo.png').convert("RGB"), lang='eng', config='--psm 4 --oem 3')
+    return codigo
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 #               Función maestra ancestral para obtener las respuestas de un examen previamente guardado               #
@@ -187,7 +202,7 @@ def obtener_respuestas():
             # Si no, se suma la letra a la variable auxiliar.
             else:
                 aux += letra
-        
+
         # Si auxiliar es igual al ID deseado, entra.
         if aux == ide:
             # Bucle: se revisa en cada letra de la linea, si letra es igual a ":" se limpia el diccionario para que no guarde el ID.
@@ -199,12 +214,12 @@ def obtener_respuestas():
                     break
                 else:
                     diccionario += letter
-    
+
     # Bucle: se repite la secuencia dependientemente de la longitud de diccionario es decir de las preguntas que tenga el examen.
     for x in range(len(diccionario)):
         # Se guarda en respuestas_Correctas el valor de diccionario en el campo que vaya el bucle.
         respuestas_correc[x] = int(diccionario[x])
-    
+
     return respuestas_correc
 
 
@@ -219,7 +234,7 @@ def recortar_imagen(img):
     primero = 214
     segundo = 614
     correctas = 0
-        
+
     #Comienza el recorte y calificacion por columnas
     for x in nombres:
         crop_img = img[506:1850, primero:segundo]
@@ -245,6 +260,7 @@ def recortar_imagen(img):
 def eliminar_residuales():
     remove('ajuste.png')
     remove('fila.png')
+    remove('codigo.png')
     remove('nombre.png')
     remove('r1.png')
     remove('r2.png')

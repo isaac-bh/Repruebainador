@@ -44,10 +44,11 @@ function calcular() {
       }
 
       // Convertimos el resultado obtenido devuelto por Python a Float para manejarlo más facil.
-      x = parseFloat(resultados[1]);
-      console.log(resultados[2]);
+      x = parseFloat(resultados[2]);
+      console.log(resultados[3]);
 
       document.getElementById("alumnoRes").innerHTML = resultados[0];
+      document.getElementById("codigoRes").innerHTML = resultados[1];
 
       // Si x es mayor o igual a 60, esta aprobado, de lo contrario esta reprobado.
       if (x >= 60) {
