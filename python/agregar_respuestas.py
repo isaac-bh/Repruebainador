@@ -4,7 +4,7 @@ import os
 
 respuestas_examen = sys.argv[1]
 ruta_absoluta = os.getcwd()
-ruta_archivo = ruta_absoluta + "/static/python/respuestasExamenes.txt"
+ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
 def escribir_respuestas(respuestas_examen):
     random_id = generar_id()

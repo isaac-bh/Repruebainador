@@ -3,13 +3,13 @@ import os
 
 id = sys.argv[1]
 ruta_absoluta = os.getcwd()
-ruta_archivo = ruta_absoluta + "/static/python/respuestasExamenes.txt"
+ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
 def validacionExamen(id):
     # Variable auxiliar.
     aux = ""
     # Abrimos el documento de texto en modo de solo lectura.
-    examenes = open(ruta_absoluta, "r")
+    examenes = open(ruta_archivo, "r")
     # Bucle: por cada linea dentro del archivo txt.
     for linea in examenes.readlines():
         aux = ""

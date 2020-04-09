@@ -35,7 +35,7 @@ img = sys.argv[1]
 ide = sys.argv[2]
 esEscan = sys.argv[3]
 ruta_absoluta = os.getcwd()
-ruta_archivo = ruta_absoluta + "/static/python/respuestasExamenes.txt"
+ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
 def Non_Zero(ruta_Imagen, ide, esEscan):
     # Inicialización de imagen con tamaño corregido.

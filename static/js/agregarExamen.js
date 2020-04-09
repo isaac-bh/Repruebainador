@@ -17,7 +17,7 @@ function obtener_respuestas() {
             mode: 'text',
             pythonPath: 'python',
             pythonOptions: ['-u'],
-            scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
+            scriptPath: 'python',
             args: [ruta_imagen, scan]
         };
 
@@ -104,7 +104,7 @@ function agregar_respuestas() {
         mode: 'text',
         pythonPath: 'python',
         pythonOptions: ['-u'],
-        scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
+        scriptPath: 'python',
         args: [ruta_imagen]
     };
 

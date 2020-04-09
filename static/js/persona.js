@@ -21,7 +21,6 @@ function calcular() {
       mode: 'text',
       pythonPath: 'python',
       pythonOptions: ['-u'],
-      scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python',
       args: [img, id, scan]
     };
 
@@ -72,7 +71,7 @@ function validarExamen() {
     mode: 'text', // Modo de texto.
     pythonPath: 'python', //Reconocimiento de sistema para el comando python.
     pythonOptions: ['-u'],
-    scriptPath: 'C:/Users/isaac/Documents/Proyectos/EPG/UI_Repruebainador/static/python', // Carpeta donde guardamos los scripts python.
+    scriptPath: 'python', // Carpeta donde guardamos los scripts python.
     args: [id] // Valor a pasar.
   };
 
@@ -81,7 +80,8 @@ function validarExamen() {
     // Si existe un error, lo imprime en un alert.
     if (error) {
       dialog.showErrorBox('Error 6:', 'Fallo Python, amén.');
-      console.log(error)
+      console.log(error);
+      console.log(resultados[0]);
     }
 
     // Si el resultado devuelto por Python es True, se añade la clase validado. Si no, se añade la clase noValidado
