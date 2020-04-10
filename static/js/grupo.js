@@ -40,7 +40,7 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                         x = 100;
                     }
                     else {
-                        x = parseFloat(Math.round(resultados[i]).toFixed(2));
+                        x = parseFloat(Math.round(resultados[i] * 100) / 100).toFixed(2);
                     }
                     
                     if (x < 60) {
@@ -89,7 +89,6 @@ document.getElementById("verificar_id").addEventListener("click", function() {
         scriptPath: 'python', // Carpeta donde guardamos los scripts python.
         args: [id_examenes] // Valor a pasar.
     };
-    console.log(id_examenes)
 
     PythonShell.run('validar_examen.py', options, function (error, resultados) {
         // Si existe un error, lo imprime en un alert.
