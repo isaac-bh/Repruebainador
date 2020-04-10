@@ -26,6 +26,7 @@ import platform
 import pytesseract
 import sys
 import time
+import pandas as pd
 from imutils import contours
 from imutils.perspective import four_point_transform
 from pytesseract import image_to_string
@@ -153,14 +154,22 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     # En base a el numero de preguntas y a los aciertos, calculamos su calificación.
     calificacion = (correctas / len(respuestas_Correctas)) * 100
+
+    calificacion1 = str(calificacion)
+
+    #se guardan los datos en el csv
+    # Abrir archivo csv por pandas y agregar titular
+    archivo = "csv/calificaciones individuales.csv"
+    csv = open(archivo, "a")
+    filas = codigo + "," + nombre + "," + calificacion1 + "\n"
+    csv.write(filas)
+
     print(nombre)
     print(codigo)
     print(calificacion)
     print(correctas)
     eliminar_residuales()
     sys.stdout.flush()
-
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 #                  Función maestra ancestral para obtener el nombre de la imagen recortada previamente                #
@@ -175,6 +184,9 @@ def obtener_nombre():
     nombre = pytesseract.image_to_string(PIL.Image.open('nombre.png').convert("RGB"), lang='eng', config='--psm 4 --oem 3')
     return nombre
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+#                  Función maestra ancestral para obtener el codigo de la imagen recortada previamente                #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 def obtener_codigo():
     os = platform.system()
 
