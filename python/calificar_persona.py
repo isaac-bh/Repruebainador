@@ -52,7 +52,7 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     #Recorte del codigo
     img = cv2.imread('ajuste.png')
-    crop_img = img[220:270, 320:500]
+    crop_img = img[220:290, 320:500]
     cv2.imwrite('codigo.png', crop_img)
 
     #Leer el nombre de quien hizo el examen
