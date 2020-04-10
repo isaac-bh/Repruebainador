@@ -25,16 +25,6 @@ function calcular() {
       args: [img, id, scan]
     };
 
-    document.getElementById("main").style.opacity = "0";
-    document.getElementById("main").style.visibility = "hidden";
-
-    document.getElementById("loader").style.opacity = "1";
-    setTimeout(function () {
-      document.getElementById("loader").style.opacity = "0";
-
-      document.getElementById("main").style.visibility = "visible";
-      document.getElementById("main").style.opacity = "1";
-    }, 5000);
     // Ejecutamos Python.
     PythonShell.run('calificar_persona.py', options, function (error, resultados) {
       // Si existe un error, lo imprime en un alert.
@@ -44,11 +34,9 @@ function calcular() {
       }
 
       // Convertimos el resultado obtenido devuelto por Python a Float para manejarlo más facil.
-      x = parseFloat(resultados[2]);
-      console.log(resultados[3]);
-
       document.getElementById("alumnoRes").innerHTML = resultados[0];
       document.getElementById("codigoRes").innerHTML = resultados[1];
+      x = parseFloat(resultados[2]);
 
       // Si x es mayor o igual a 60, esta aprobado, de lo contrario esta reprobado.
       if (x >= 60) {

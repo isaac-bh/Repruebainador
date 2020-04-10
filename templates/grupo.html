@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calificar grupo</title>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/grupo.css">
+</head>
+<body>
+    <main>
+        <nav id="neobar">
+            <div id="logo_principal">
+                <img src="../static/images/Icono.png" alt="Icono Repruebainador">
+            </div>
+            <ul>
+                <li><a href="persona.html" class="neobar-link">
+                    <i class="demo-icon icon-user-circle">&#xf2bd;</i>
+                </a></li>
+                <li class="en_curso"><a href="grupo.html" class="neobar-link">
+                    <i class="demo-icon icon-group-circled">&#xe803;</i>
+                </a></li>
+                <li><a href="index.html" class="neobar-link">
+                    <i class="demo-icon icon-home-circled">&#xe804;</i>
+                </a></li>
+                <li><a href="agregarExamen.html" class="neobar-link">
+                    <i class="demo-icon icon-plus-circled">&#xe800;</i>
+                </a></li>
+                <li><a href="" class="neobar-link">
+                    <i class="demo-icon icon-ok-circled">&#xe802;</i>
+                </a></li>
+            </ul>
+        </nav>
+
+        <section id="contenido">
+            <div id="principal">
+                <h1>Calificar a un grupo</h1>
+                <div class="controles">
+                    <div class="controles-arriba">
+                        <span id="agregar_carpeta">Abrir carpeta</span>
+                        <div class="contScan">
+                            <input type="checkbox" name="esEscaneada" id="esEscaneada" value="1">
+                            <label for="esEscaneada"><span></span>La imagenes son escaneadas</label>
+                        </div>
+                    </div>
+                    <div class="controles-abajo">
+                        <input type="text" id="id_examenes" placeholder="ID de los examenes...">
+                        <span id="verificar_id">Verificar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="calificados">
+                <span id="leyenda">Aqui se mostraran los alumnos despues de calificarlos...</span>
+               <!-- <div class="alumno aprobado">
+                    <p class="calificacion_alumno">100</p>
+                    <div class="datos_alumno">
+                        <p class="codigo">216817953</p>
+                        <p class="nombre_alumno">Benavides Hernandez Isaac Alain</p>
+                    </div>
+                </div>
+                <div class="alumno aprobado">
+                    <p class="calificacion_alumno">100</p>
+                    <div class="datos_alumno">
+                        <p class="codigo">216817953</p>
+                        <p class="nombre_alumno">Lomelí Flores Jesús Isaac</p>
+                    </div>
+                </div>
+                <div class="alumno aprobado">
+                    <p class="calificacion_alumno">100</p>
+                    <div class="datos_alumno">
+                        <p class="codigo">216817953</p>
+                        <p class="nombre_alumno">Romo Valadez Jonathan Joshua</p>
+                    </div>
+                </div>
+                <div class="alumno casi-reprobado">
+                    <p class="calificacion_alumno">69</p>
+                    <div class="datos_alumno">
+                        <p class="codigo">216817953</p>
+                        <p class="nombre_alumno">Lomeli Lomeli Carlitos</p>
+                    </div>
+                </div>
+                <div class="alumno reprobado">
+                    <p class="calificacion_alumno">59</p>
+                    <div class="datos_alumno">
+                        <p class="codigo">216817953</p>
+                        <p class="nombre_alumno">Olmos del Presente</p>
+                    </div>
+                </div>
+            </div> -->
+        </section>
+        <span id="aux_oculto" style="display: none;"></span>
+    </main>
+
+    <script src="../static/js/grupo.js"></script>
+</body>
+</html>

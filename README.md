@@ -33,4 +33,6 @@ Guia para instalar esta madre:
 # Patch notes:
 **Versión 2.1.0 _(09/04/2020)_:** Terminada la función para calificar un examen de multiples columnas, falta que obtenga el código del alumno. Todo el resto de función esta totalmente integrada a la Interfaz Grafica. Tambien ya se eliminan los archivos residuales que generaba el programa para poder operar.
 
+**Versión 2.2.0 _(10/04/2020)_:** Totalmente operacional la función que califica en secuencia, sin embargo falta escribir en el archivo CSV, corregidas las vistas que se se vieron afectadas por el cambio de navbar. Corregida la manera en la que guarda las respuestas de un examen dentro de un txt. Agregada la libreria Pandas al archivo **requirements.txt**.
+
 _Agradecimientos especiales a Stack Overflow y a mi abuelita._

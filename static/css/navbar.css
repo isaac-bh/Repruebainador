@@ -1,64 +1,4 @@
-:root {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 12px;
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 3%;
-    height: 100%;
-    background-color: #292929;
-}
-
-.navbar-items {
-    margin: auto;
-    margin-top: 1.5vh;
-    height: 97%;
-    width: 90%;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0;
-}
-
-.navbar-link {
-    width: 100%;
-    margin: auto;
-    text-decoration: none;
-    color: #696969;
-    font-size: 2.5rem;
-    transition: color 0.7s;
-    text-align: center;
-    padding-bottom: 5px;
-    position: relative;
-}
-
-.navbar-link::after {
-    content: "";
-	position: absolute;
-	height: 2px;
-	background-color: #82b0e4;
-	width: 0;
-	left: 50%;
-	bottom: 0;
-	transform: translateX(-50%);
-  	transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;
-}
-
-.navbar-link:hover {
-    color: #82b0e4;
-}
-
-.navbar-link:hover::after {
-    width: 100%;
-}
-
+/* --- --- --- --- --- NeoBar --- --- --- --- --- */
 @font-face {
     font-family: 'fontello';
     src: url('../fonts/font/fontello.eot?50788721');
@@ -66,6 +6,10 @@
          url('../fonts/font/fontello.woff?50788721') format('woff'),
          url('../fonts/font/fontello.ttf?50788721') format('truetype'),
          url('../fonts/font/fontello.svg?50788721#fontello') format('svg');
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .demo-icon {
@@ -76,4 +20,80 @@
       text-decoration: inherit;
       width: 100%;
       text-align: center;
+}
+
+#neobar {
+    width: 4vw;
+    height: 100vh;
+    background-color: #292e30;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#neobar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 3rem;
+}
+
+#neobar ul li {
+    height: 3rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    width: 4vw;
+    cursor: pointer;
+    position: relative;
+}
+
+#neobar ul li::after {
+    content: "";
+    position: absolute;
+    border-left: 2px solid #118af7;
+    bottom: 0;
+    right: 0;
+    top: 100%;
+    transition: all 0.75s;
+}
+
+#neobar ul li:hover::after{
+    top: 0;
+}
+
+#neobar ul li:hover {
+    background-color: #28333c;
+}
+
+#neobar ul li:hover > a {
+    color: #118af7;
+}
+
+#neobar ul li a {
+    text-decoration: none;
+    color: #a2a4a5;
+    font-size: 2rem;
+}
+
+#logo_principal {
+    width: 4rem;
+    height: 3rem;
+    padding-top: 1rem;
+    border-bottom: 2px solid #343c3f;
+    text-align: center;
+}
+
+#logo_principal img {
+    cursor: pointer;
+    width: 2rem;
+}
+
+.en_curso {
+    background-color: #28333c !important;
+}
+
+.en_curso a {
+    color: #118af7 !important;
 }

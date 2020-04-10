@@ -3,13 +3,12 @@
 }
 
 body {
+	position: absolute;
 	margin: 0;
 	box-sizing: border-box;
 	display: flex;
-	justify-content: space-around;
-	flex-direction: column;
-	padding: 3rem;
-	background: #1b1f25;
+	justify-content: space-between;
+	background: #292e30;
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #e3e3e3;
@@ -22,7 +21,7 @@ body {
 
 h1 {
 	font-family: "kenyan";
-	margin: 0;
+	margin: 2.5rem 0 0 0;
 	letter-spacing: 5px;
 	text-align: center;
 	font-size: 6rem;
@@ -54,6 +53,10 @@ h1 {
 	margin: auto;
 }
 
+#validarOperacion {
+	margin-bottom: 2rem !important;
+}
+
 #obtenereExamen:hover, #validarOperacion:hover {
 	background-color: #002050;
 }
@@ -78,11 +81,12 @@ input[type="checkbox"]:checked + label span {
 #respuestasObtenidas {
 	width: 90%;
 	margin: auto;
-	padding: 3rem 2px 3rem 2px;
-	height: 75%;
+	padding: 3rem 2px 0 2px;
+	height: 70%;
 	display: flex;
 	flex-direction: column;
 	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.75);
+	overflow-y: scroll;
 }
 
 .pregunta {
@@ -122,9 +126,21 @@ input[type="checkbox"]:checked + label span {
 	text-align: center;
 	align-items: center;
     width: 90%;
-    height: 60vh;
+	height: 70vh;
+	margin-left: 4vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.75);
+}
+
+main {
+	width: 96vw;
+	height: 100vh;
+	margin: auto;
+	transition: all 1s;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	border-left: 2px solid #343c3f;
+	background-color: #1b1f25;
 }

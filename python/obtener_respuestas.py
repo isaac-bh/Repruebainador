@@ -22,16 +22,24 @@ import numpy as np
 import argparse
 import imutils
 import sys
+from PIL import Image
+from os import remove
 
-img = sys.argv[1]
+
+imgen = sys.argv[1]
 es_escaneada = sys.argv[2]
 
-def Non_Zero(img, es_escaneada):
+def Non_Zero(imgen, es_escaneada):
+    imag = Image.open(imgen)
+    new_img = imag.resize((1552,2000))
+    new_img.save('ajuste.png','png')
+    img = cv2.imread('ajuste.png')
+    recortar_imagen(img)
     # Definimos las respuestas correctas del examen.
     respuestas_Correctas = ""
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
-    imagen = cv2.imread(img)
+    imagen = cv2.imread("fila.png")
     escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
     bordeado = cv2.Canny(desenfocado, 75, 200)
@@ -115,6 +123,45 @@ def Non_Zero(img, es_escaneada):
         respuestas_Correctas += str(respondida[1])
 
     print(respuestas_Correctas)
+    eliminar_residuales()
 
 
-Non_Zero(img, es_escaneada)
+def recortar_imagen(img):
+    #Recortamos la imagen redimencionada en tres correspondientes a la cantidad de columnas
+    nombres = [ "r1","r2","r3"]
+    primero = 214
+    segundo = 614
+    correctas = 0
+
+    #Comienza el recorte y calificacion por columnas
+    for x in nombres:
+        crop_img = img[506:1850, primero:segundo]
+        cv2.imwrite(x + '.png', crop_img)
+        primero = primero + 400
+        segundo = segundo + 400
+
+
+    r1 = Image.open('r1.png')
+    r2 = Image.open('r2.png')
+    r3 = Image.open('r3.png')
+    fila = Image.new('RGB', (r1.width, r1.height + r2.height + r3.height))
+    fila.paste(r1, (0, 0))
+    fila.paste(r2, (0, r1.height))
+    fila.paste(r3, (0, r1.height + r2.height))
+    fila.save('fila.png')
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+#          Función maestra ancestral para eliminar los archivos que se crean en el proceso de calificación.           #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+def eliminar_residuales():
+    remove('ajuste.png')
+    remove('fila.png')
+    remove('r1.png')
+    remove('r2.png')
+    remove('r3.png')
+
+
+
+Non_Zero(imgen, es_escaneada)

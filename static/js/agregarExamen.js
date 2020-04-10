@@ -23,7 +23,8 @@ function obtener_respuestas() {
 
         PythonShell.run('obtener_respuestas.py', options, function (error, resultados) {
             if (error) {
-                dialog.showErrorBox('Error 10:', 'Consulta el manual de usuario para ver que puede causar este error.'); 
+                dialog.showErrorBox('Error 10:', 'Consulta el manual de usuario para ver que puede causar este error.');
+                console.log(error);
             }
 
             else {

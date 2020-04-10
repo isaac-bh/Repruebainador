@@ -1,0 +1,178 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background: #292e30;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#contenido {
+    width: 96vw;
+    padding-top: 2rem;
+    background-color: #1b1f25;
+    z-index: 1;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-left: 2px solid #343c3f;
+}
+
+#principal {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#principal h1 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: "Oswald";
+}
+
+#agregar_carpeta, #verificar_id {
+    padding: 0.5rem 2rem;
+    height: 1.2rem;
+    border-radius: 25px;
+    background-color: #118af7;
+    font-size: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#calificados {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border: 2px solid #3c4143;
+    border-radius: 25px;
+}
+
+#leyenda {
+    font-weight: lighter;
+    font-style: italic;
+    color: #a2a4a5;
+}
+
+.alumno {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 25px;
+    border-top: 2px solid #3c4143;
+    padding: 1rem 1rem;
+}
+
+.alumno p {
+    margin: 0;
+}
+
+.alumno:hover > .datos_alumno .nombre_alumno {
+    color: white;
+}
+
+.alumno .calificacion_alumno {
+    height: 2rem;
+    width: 3rem;
+    text-align: center;
+    background-color: #3c4143;
+    border-radius: 50%;
+    padding-top: 1rem;
+}
+
+.datos_alumno {
+    width: 80%;
+    padding-top: 0.25rem;
+}
+
+.nombre_alumno {
+    color: #555f62;
+    transition: color 0.5s;
+}
+
+.aprobado .calificacion_alumno {
+    color: greenyellow;
+    border: 1px solid greenyellow;
+}
+
+.casi-reprobado .calificacion_alumno {
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+.reprobado .calificacion_alumno {
+    color: orangered;
+    border: 1px solid orangered;
+}
+
+.controles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    width: 30%;
+}
+
+#id_examenes {
+    font-size: 0.75rem;
+    padding: 0.15rem 1rem;
+    width: 50%;
+    border-radius: 25px;
+    height: 2rem;
+    color: white;
+    border: 2px solid #118af7;
+    background-color: #343c3f;
+}
+
+.controles-arriba {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* - - - - - - - - - Checkbox custom - - - - - - - - - - */ 
+.contScan {
+    width: 50%;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/check_radio_sheet.png) left 0 top no-repeat;
+	cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+	background: url(../images/check_radio_sheet.png) -19px top no-repeat;
+}
+
+main {
+    transition: all 1s;
+    display: flex;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../fonts/Oswald-Regular.ttf');
+}

@@ -117,83 +117,10 @@ body {
 section {
     width: 96vw;
     padding-top: 2rem;
-    background-color: #292e30;
+    background-color: #1b1f25;
     z-index: 1;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     border-left: 2px solid #343c3f;
 }
 
-/* --- --- --- --- --- NeoBar --- --- --- --- --- */
-@font-face {
-    font-family: 'fontello';
-    src: url('../fonts/font/fontello.eot?50788721');
-    src: url('../fonts/font/fontello.eot?50788721#iefix') format('embedded-opentype'),
-         url('../fonts/font/fontello.woff?50788721') format('woff'),
-         url('../fonts/font/fontello.ttf?50788721') format('truetype'),
-         url('../fonts/font/fontello.svg?50788721#fontello') format('svg');
-}
-
-.demo-icon {
-      font-family: "fontello";
-      font-style: normal;
-      font-weight: normal;
-      display: inline-block;
-      text-decoration: inherit;
-      width: 100%;
-      text-align: center;
-}
-
-#neobar {
-    width: 4vw;
-    height: 100vh;
-    background-color: #292e30;
-    display: flex;
-    justify-content: flex-start;
-    z-index: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-#neobar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-top: 3rem;
-}
-
-#neobar ul li {
-    height: 3rem;
-    padding-top: 0.5rem;
-    text-align: center;
-    width: 4vw;
-    cursor: pointer;
-    margin-bottom: 1rem;
-}
-
-#neobar ul li:hover {
-    background-color: #28333c;
-}
-
-#neobar ul li:hover > a {
-    color: #118af7;
-}
-
-#neobar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 2rem;
-}
-
-#logo_principal {
-    width: 4rem;
-    height: 3rem;
-    padding-top: 1rem;
-    border-bottom: 2px solid #343c3f;
-    text-align: center;
-}
-
-#logo_principal img {
-    cursor: pointer;
-    width: 2rem;
-}
