@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos</title>
+    <style>
+        @font-face {
+            font-family: 'Star';
+            src: url('../static/fonts/Starjedi.ttf');
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .fade {
+            position: relative;
+            width: 100%;
+            min-height: 60vh;
+            top: -25px;
+            background-image: linear-gradient(0deg, transparent, black 75%);
+            z-index: 1;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .star-wars {
+            display: flex;
+            justify-content: center;
+            height: 800px;
+            perspective: 400px;
+            color: #feda4a;
+            font-family: 'Pathway Gothic One', sans-serif;
+            font-size: 500%;
+            font-weight: 600;
+            letter-spacing: 6px;
+            line-height: 150%;
+            text-align: justify;
+        }
+
+        .crawl {
+            position: relative;
+            top: -100px;
+            transform-origin: 50% 100%;
+            animation: crawl 60s linear;
+            opacity: 0;
+        }
+
+        @keyframes crawl {
+            0% {
+                top: 0;
+                transform: rotateX(20deg) translateZ(0);
+                opacity: 1;
+            }
+            100% {
+                top: -6000px;
+                transform: rotateX(25deg) translateZ(-2500px);
+                opacity: 1;
+            }
+        }
+
+        .saga {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url('../static/images/rStart.png');
+            background-size: 0%;
+            background-position: center;
+            animation: decremento 15s linear;
+            background-repeat: no-repeat;
+        }
+        
+
+        @keyframes decremento {
+            0% {
+                background-size: 500%;
+            }
+            99% {
+                background-size: 0%;
+            }
+            100% {
+                display: none;
+            }
+        }
+
+        #iniciador {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            text-align: center;
+            color: #feda4a;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #iniciador img {
+            width: 25%;
+            margin: 7% auto 0 auto;
+            
+        }
+
+        #regresar {
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #feda4a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="iniciador">
+        <img src="../static/images/Icono.png" alt="">
+        <span> Click para ver...</span>
+    </div>
+    <div class="saga" style="display: none;"></div>
+
+    <div class="fade" style="display: none;"></div>
+
+    <section class="star-wars" style="display: none;">
+        <a id="regresar" href="index.html">Regresar</a>
+        <div class="crawl">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="title">
+            <h1>VIII. Pandemia:</h1>
+          </div>
+          
+          <p>Durante años, los profesores han tenido que calificar los examenes que le realizan a sus alumnos a mano.</p>     
+          <p>Esto ha hecho que los profesores pierdan mucho tiempo calificando estos examenes, lo que provoca un retraso en el plan educativo en los jovenes, los cuales son el futuro de México.</p>
+          <p>Sin embargo, unos valientes heroes han dedicado su tiempo, esfuerzo y aprendizaje de 8 semestres en la Escuela Politecnica de Guadalajara para que esto ya no sea asi.</p>
+          <p>Nuestros heroes, a pesar de pasar hambre, insomnio, crisis existenciales y hasta una pandemia, intentaran entregar su proyecto y salvar a los profesores de las tareas comunes y tediosas.</p>
+          <p>Emboscados por el gobierno federal por no cumplir la cuarentena al momento de entregar este proyecto, nuestros heroes tienen que refugiarse y entregar de manera Online desde la base de operaciones R4NCH0...</p>
+          
+        </div>
+      
+      </section>
+
+      <script>
+            var audio;
+            window.addEventListener('load', init(), false);
+
+            document.getElementById('iniciador').addEventListener('click', function () {
+                document.getElementById('iniciador').style.display = 'none';
+                audio.play();
+                document.getElementsByClassName('saga')[0].style.display = 'block';
+                setTimeout(function(){ 
+                    document.getElementsByClassName('fade')[0].style.display = 'relative';
+                    document.getElementsByClassName('star-wars')[0].style.display = 'flex';
+                }, 15000);
+            });
+
+
+            function init() {
+                audio = new Audio();
+                audio.src = "../static/extra/star.mp3";
+            }
+      </script>
+      <script src="../static/js/controles_ventana.js"></script>
+</body>
+</html>

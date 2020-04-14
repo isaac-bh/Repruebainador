@@ -5,11 +5,12 @@ const path = require('path')
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1920,
-    height: 1000,
+    width: 1440,
+    height: 750,
     autoHideMenuBar: true,
-    frame: true,
+    frame: false,
     titleBarStyle: 'hidden',
+    movable: 'true',
     icon: path.join(__dirname, './static/images/icono.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -19,7 +20,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('./templates/index.html')
-  mainWindow.maximize()
+  //mainWindow.maximize()
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
