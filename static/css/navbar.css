@@ -31,6 +31,8 @@
     z-index: 0;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
 }
 
 #neobar ul {
@@ -47,6 +49,7 @@
     width: 4vw;
     cursor: pointer;
     position: relative;
+    -webkit-app-region: no-drag;
 }
 
 #neobar ul li::after {
@@ -78,7 +81,7 @@
 }
 
 #logo_principal {
-    width: 4rem;
+    width: 100%;
     height: 3rem;
     padding-top: 1rem;
     border-bottom: 2px solid #343c3f;
@@ -88,6 +91,7 @@
 #logo_principal img {
     cursor: pointer;
     width: 2rem;
+    margin: auto;
 }
 
 .en_curso {
