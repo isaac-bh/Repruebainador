@@ -86,6 +86,7 @@
     padding-top: 1rem;
     border-bottom: 2px solid #343c3f;
     text-align: center;
+    -webkit-app-region: no-drag;
 }
 
 #logo_principal img {
