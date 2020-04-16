@@ -200,6 +200,7 @@ def obtener_codigo():
 def obtener_respuestas():
     respuestas_correc = {}
     diccionario = ""
+    contador = 0
     respuestas = open(ruta_archivo, "r")
     for linea in respuestas.readlines():
         aux = ""
@@ -221,10 +222,11 @@ def obtener_respuestas():
                 # Si letra es igual a "." se rompe el ciclo y se dejan de almacenar los caracteres en la variable diccionario.
                 elif letter == ".":
                     a = len(linea)
-                    columnas = int(linea[-1])
+                    columnas = int(linea[contador+1])
                     break
                 else:
                     diccionario += letter
+                contador += 1
 
     # Bucle: se repite la secuencia dependientemente de la longitud de diccionario es decir de las preguntas que tenga el examen.
     for x in range(len(diccionario)):
@@ -291,6 +293,8 @@ def recortar_imagen(img, columnas):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 def eliminar_residuales(columnas):
     remove('ajuste.png')
+    remove('codigo.png')
+    remove('nombre.png')
     remove('fila.png')
     if columnas == 1:
         remove('r1.png')
