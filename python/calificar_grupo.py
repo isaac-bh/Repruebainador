@@ -177,7 +177,7 @@ def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
             print(calificacion)
             print(codigo)
             print(nombre)
-            eliminar_residuales()
+            eliminar_residuales(columnas)
             sys.stdout.flush()
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -300,14 +300,18 @@ def recortar_imagen(img, columnas):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 #          Función maestra ancestral para eliminar los archivos que se crean en el proceso de calificación.           #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-def eliminar_residuales():
+def eliminar_residuales(columnas):
     remove('ajuste.png')
     remove('fila.png')
-    remove('codigo.png')
-    remove('nombre.png')
-    remove('r1.png')
-    remove('r2.png')
-    remove('r3.png')
+    if columnas == 1:
+        remove('r1.png')
+    elif columnas == 2:
+        remove('r1.png')
+        remove('r2.png')
+    elif columnas == 3:
+        remove('r1.png')
+        remove('r2.png')
+        remove('r3.png')
 
 
 

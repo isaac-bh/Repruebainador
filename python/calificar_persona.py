@@ -38,7 +38,6 @@ ide = sys.argv[2]
 esEscan = sys.argv[3]
 ruta_absoluta = os.getcwd()
 ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
-columnas = 0
 
 def Non_Zero(ruta_Imagen, ide, esEscan):
     # Inicialización de imagen con tamaño corregido.
@@ -52,18 +51,15 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     cv2.imwrite('nombre.png', crop_img)
 
     #Recorte del codigo
-<<<<<<< HEAD
-=======
     img = cv2.imread('ajuste.png')
->>>>>>> master
     crop_img = img[220:290, 320:500]
     cv2.imwrite('codigo.png', crop_img)
 
     #Leer el nombre de quien hizo el examen
     nombre = obtener_nombre()
     codigo = obtener_codigo()
-    respuestas_Correctas = obtener_respuestas()
-    recortar_imagen(img)
+    respuestas_Correctas, columnas = obtener_respuestas()
+    recortar_imagen(img, columnas)
 
     # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
     imagen = cv2.imread("fila.png")
@@ -169,7 +165,7 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
     print(nombre)
     print(codigo)
     print(calificacion)
-    eliminar_residuales()
+    eliminar_residuales(columnas)
     sys.stdout.flush()
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -235,7 +231,7 @@ def obtener_respuestas():
         # Se guarda en respuestas_Correctas el valor de diccionario en el campo que vaya el bucle.
         respuestas_correc[x] = int(diccionario[x])
 
-    return respuestas_correc
+    return respuestas_correc, columnas
 
 
 
@@ -243,7 +239,7 @@ def obtener_respuestas():
 #               Función maestra ancestral para recortar las filas del examen y uniendolas en una                      #
 #           sola imagen para poder manejar más facil la imagen y no tener problemas con el diccionario.               #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-def recortar_imagen(img):
+def recortar_imagen(img, columnas):
     # Recortamos la imagen redimencionada en tres correspondientes a la cantidad de columnas
     # Comienza el recorte y calificacion por columnas
 
@@ -288,22 +284,23 @@ def recortar_imagen(img):
         fila.paste(r3, (0, r1.height + r2.height))
         fila.save('fila.png')
 
-    else:
-        print("¡Modo aun no soportado!")
-
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 #          Función maestra ancestral para eliminar los archivos que se crean en el proceso de calificación.           #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-def eliminar_residuales():
+def eliminar_residuales(columnas):
     remove('ajuste.png')
     remove('fila.png')
-    remove('codigo.png')
-    remove('nombre.png')
-    remove('r1.png')
-    remove('r2.png')
-    remove('r3.png')
+    if columnas == 1:
+        remove('r1.png')
+    elif columnas == 2:
+        remove('r1.png')
+        remove('r2.png')
+    elif columnas == 3:
+        remove('r1.png')
+        remove('r2.png')
+        remove('r3.png')
 
 
 

@@ -35,7 +35,7 @@ def Non_Zero(imgen, es_escaneada):
     new_img = imag.resize((1552,2000))
     new_img.save('ajuste.png','png')
     img = cv2.imread('ajuste.png')
-    recortar_imagen(img)
+    recortar_imagen(img, columnas)
     # Definimos las respuestas correctas del examen.
     respuestas_Correctas = ""
 
@@ -124,10 +124,10 @@ def Non_Zero(imgen, es_escaneada):
         respuestas_Correctas += str(respondida[1])
 
     print(respuestas_Correctas)
-    eliminar_residuales()
+    eliminar_residuales(columnas)
 
 
-def recortar_imagen(img):
+def recortar_imagen(img, columnas):
     # Recortamos la imagen redimencionada en tres correspondientes a la cantidad de columnas
     # Comienza el recorte y calificacion por columnas
 
@@ -172,22 +172,25 @@ def recortar_imagen(img):
         fila.paste(r3, (0, r1.height + r2.height))
         fila.save('fila.png')
 
-    else:
-        print("¡Modo aun no soportado!")
-
 
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 #          Función maestra ancestral para eliminar los archivos que se crean en el proceso de calificación.           #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-def eliminar_residuales():
+def eliminar_residuales(columnas):
     remove('ajuste.png')
     remove('fila.png')
-    remove('r1.png')
-    remove('r2.png')
-    remove('r3.png')
+    if columnas == 1:
+        remove('r1.png')
+    elif columnas == 2:
+        remove('r1.png')
+        remove('r2.png')
+    elif columnas == 3:
+        remove('r1.png')
+        remove('r2.png')
+        remove('r3.png')
 
 
 
-Non_Zero(imgen, es_escaneada)
+Non_Zero(imgen, es_escaneada, columnas)
