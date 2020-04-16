@@ -40,43 +40,49 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                 }
                 else {
                     contenedor.innerHTML = "";
-                    for (i = 0; i < resultados.length; i++) {
-                        if (resultados[i] == 100) {
-                            x = 100;
-                        }
-                        else {
-                            x = parseFloat(Math.round(resultados[i] * 100) / 100).toFixed(2);
-                        }
+                    if (resultados[0] == -1){
+                      dialog.showErrorBox('Error nombre:', 'El nombre del archivo ya existe');
+                      console.log(error);
+                    }
+                    else{
+                        for (i = 0; i < resultados.length; i++) {
+                            if (resultados[i] == 100) {
+                                x = 100;
+                            }
+                            else {
+                                x = parseFloat(Math.round(resultados[i] * 100) / 100).toFixed(2);
+                            }
 
-                        if (x < 60) {
-                            contenedor.innerHTML += '<div class="alumno reprobado">' +
-                                ' <p class="calificacion_alumno">'+ x +'</p>' +
-                                ' <div class="datos_alumno">' +
-                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
-                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
-                                ' </div>' +
-                                ' </div>';
-                        }
-                        else if (x >= 60 && x <= 70) {
-                            contenedor.innerHTML += '<div class="alumno casi-reprobado">' +
-                                ' <p class="calificacion_alumno">'+ x +'</p>' +
-                                ' <div class="datos_alumno">' +
-                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
-                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
-                                ' </div>' +
-                                ' </div>';
-                        }
-                        else {
-                            contenedor.innerHTML += '<div class="alumno aprobado">' +
-                                ' <p class="calificacion_alumno">'+ x +'</p>' +
-                                ' <div class="datos_alumno">' +
-                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
-                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
-                                ' </div>' +
-                                ' </div>';
-                        }
+                            if (x < 60) {
+                                contenedor.innerHTML += '<div class="alumno reprobado">' +
+                                    ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                    ' <div class="datos_alumno">' +
+                                    ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                    ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                    ' </div>' +
+                                    ' </div>';
+                            }
+                            else if (x >= 60 && x <= 70) {
+                                contenedor.innerHTML += '<div class="alumno casi-reprobado">' +
+                                    ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                    ' <div class="datos_alumno">' +
+                                    ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                    ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                    ' </div>' +
+                                    ' </div>';
+                            }
+                            else {
+                                contenedor.innerHTML += '<div class="alumno aprobado">' +
+                                    ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                    ' <div class="datos_alumno">' +
+                                    ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                    ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                    ' </div>' +
+                                    ' </div>';
+                            }
 
-                        i = i + 2;
+                            i = i + 2;
+                        }
                     }
                 }
             });
