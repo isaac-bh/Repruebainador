@@ -13,6 +13,7 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
     const pathArray = dialog.showOpenDialogSync({properties: ['openDirectory']})
     var ruta_carpeta = pathArray[0];
     var id_examenes = document.getElementById("id_examenes").value;
+    var nombre_examen = document.getElementById("nombre_examen").value;
     var scan = String(document.getElementById("esEscaneada").checked);
 
 
@@ -20,61 +21,66 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
         dialog.showErrorBox('Error 1:', 'Ingrese un ID de examen para calificar el examen.');
     }
     else {
-        var options = {
-            mode: 'text',
-            pythonPath: 'python',
-            pythonOptions: ['-u'],
-            scriptPath: 'python', // Carpeta donde guardamos los scripts python.
-            args: [ruta_carpeta, id_examenes, scan]
-        };
+        if (nombre_examen == "") {
+            dialog.showErrorBox('Error 2:', 'Ingrese un nombre de examen para guardar los datos correctamente.');
+        }
+        else{
+            var options = {
+                mode: 'text',
+                pythonPath: 'python',
+                pythonOptions: ['-u'],
+                scriptPath: 'python', // Carpeta donde guardamos los scripts python.
+                args: [ruta_carpeta, id_examenes, nombre_examen, scan]
+            };
 
-        PythonShell.run('calificar_grupo.py', options, function (error, resultados) { 
-            if (error) {
-                dialog.showErrorBox('Error 9:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
-                console.log(error);
-            }
-            else {
-                contenedor.innerHTML = "";
-                for (i = 0; i < resultados.length; i++) {
-                    if (resultados[i] == 100) {
-                        x = 100;
-                    }
-                    else {
-                        x = parseFloat(Math.round(resultados[i] * 100) / 100).toFixed(2);
-                    }
-                    
-                    if (x < 60) {
-                        contenedor.innerHTML += '<div class="alumno reprobado">' +
-                            ' <p class="calificacion_alumno">'+ x +'</p>' +
-                            ' <div class="datos_alumno">' + 
-                            ' <p class="codigo">'+ resultados[i+1] +'</p>' + 
-                            ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' + 
-                            ' </div>' + 
-                            ' </div>';
-                    }
-                    else if (x >= 60 && x <= 70) {
-                        contenedor.innerHTML += '<div class="alumno casi-reprobado">' +
-                            ' <p class="calificacion_alumno">'+ x +'</p>' +
-                            ' <div class="datos_alumno">' + 
-                            ' <p class="codigo">'+ resultados[i+1] +'</p>' + 
-                            ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' + 
-                            ' </div>' + 
-                            ' </div>';
-                    }
-                    else {
-                        contenedor.innerHTML += '<div class="alumno aprobado">' +
-                            ' <p class="calificacion_alumno">'+ x +'</p>' +
-                            ' <div class="datos_alumno">' + 
-                            ' <p class="codigo">'+ resultados[i+1] +'</p>' + 
-                            ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' + 
-                            ' </div>' + 
-                            ' </div>';
-                    }
-
-                    i = i + 2;
+            PythonShell.run('calificar_grupo.py', options, function (error, resultados) {
+                if (error) {
+                    dialog.showErrorBox('Error 9:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+                    console.log(error);
                 }
-            }
-        });
+                else {
+                    contenedor.innerHTML = "";
+                    for (i = 0; i < resultados.length; i++) {
+                        if (resultados[i] == 100) {
+                            x = 100;
+                        }
+                        else {
+                            x = parseFloat(Math.round(resultados[i] * 100) / 100).toFixed(2);
+                        }
+
+                        if (x < 60) {
+                            contenedor.innerHTML += '<div class="alumno reprobado">' +
+                                ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                ' <div class="datos_alumno">' +
+                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                ' </div>' +
+                                ' </div>';
+                        }
+                        else if (x >= 60 && x <= 70) {
+                            contenedor.innerHTML += '<div class="alumno casi-reprobado">' +
+                                ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                ' <div class="datos_alumno">' +
+                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                ' </div>' +
+                                ' </div>';
+                        }
+                        else {
+                            contenedor.innerHTML += '<div class="alumno aprobado">' +
+                                ' <p class="calificacion_alumno">'+ x +'</p>' +
+                                ' <div class="datos_alumno">' +
+                                ' <p class="codigo">'+ resultados[i+1] +'</p>' +
+                                ' <p class="nombre_alumno">' + resultados[i+2] + '</p>' +
+                                ' </div>' +
+                                ' </div>';
+                        }
+
+                        i = i + 2;
+                    }
+                }
+            });
+        }
     }
 });
 
@@ -96,17 +102,17 @@ document.getElementById("verificar_id").addEventListener("click", function() {
           dialog.showErrorBox('Error 6:', 'Fallo Python, amén.');
           console.log(error);
         }
-    
+
         // Si el resultado devuelto por Python es True, se añade la clase validado. Si no, se añade la clase noValidado
         if (resultados == "True") {
             dialog.showMessageBox({
-                message: "El siguiente ID existe en la base de datos: " + id_examenes, 
+                message: "El siguiente ID existe en la base de datos: " + id_examenes,
                 title: "Tarea completada exitosamente."
             })
-        } 
+        }
         else {
             dialog.showMessageBox({
-                message: "Verifique sus examenes guardados, porque este no existe.", 
+                message: "Verifique sus examenes guardados, porque este no existe.",
                 title: "La tarea fallo con exito."
             })
             console.log(resultados);

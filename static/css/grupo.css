@@ -140,12 +140,24 @@ body {
     background-color: #343c3f;
 }
 
+#nombre_examen {
+    font-size: 0.75rem;
+    padding: 0.15rem 1rem;
+    width: 50%;
+    border-radius: 25px;
+    height: 2rem;
+    color: white;
+    border: 2px solid #118af7;
+    background-color: #343c3f;
+    margin: 1rem 0;
+}
+
 .controles-arriba {
     display: flex;
     justify-content: space-between;
 }
 
-/* - - - - - - - - - Checkbox custom - - - - - - - - - - */ 
+/* - - - - - - - - - Checkbox custom - - - - - - - - - - */
 .contScan {
     width: 50%;
 }

@@ -31,6 +31,8 @@
     z-index: 0;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
 }
 
 #neobar ul {
@@ -47,6 +49,7 @@
     width: 4vw;
     cursor: pointer;
     position: relative;
+    -webkit-app-region: no-drag;
 }
 
 #neobar ul li::after {
@@ -78,16 +81,18 @@
 }
 
 #logo_principal {
-    width: 4rem;
+    width: 100%;
     height: 3rem;
     padding-top: 1rem;
     border-bottom: 2px solid #343c3f;
     text-align: center;
+    -webkit-app-region: no-drag;
 }
 
 #logo_principal img {
     cursor: pointer;
     width: 2rem;
+    margin: auto;
 }
 
 .en_curso {
@@ -96,4 +101,27 @@
 
 .en_curso a {
     color: #118af7 !important;
+}
+
+/* Controles de ventana */
+.win_controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    width: 7vw;
+    justify-content: space-around;
+    padding: 0.5rem 0.5rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 25px;
+}
+
+.win_controls i {
+    width: 30%;
+    cursor: pointer;
+}
+
+.win_controls i:hover {
+    color: #118af7;
 }

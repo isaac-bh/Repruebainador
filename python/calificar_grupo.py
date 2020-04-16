@@ -35,12 +35,17 @@ from os import remove
 
 ruta_carpeta = sys.argv[1]
 ide = sys.argv[2]
-esEscan = sys.argv[3]
+nombre = sys.argv[3]
+esEscan = sys.argv[4]
 ruta_absoluta = os.getcwd()
 ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
+columnas = 0
 
-def Non_Zero(ruta_carpeta, ide, esEscan):
+def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
     Path = pathlib.Path(ruta_carpeta)
+    # Abrir archivo csv por pandas
+    archivo = "csv/calificaciones individuales.csv"
+    csv = open(archivo, "w")
     #Obtiene la imagen correspondiente a cada hoja de respuestas y las recorre
     for imagen in Path.iterdir():
         # Inicialización de imagen con tamaño corregido.
@@ -159,12 +164,9 @@ def Non_Zero(ruta_carpeta, ide, esEscan):
 
         calificacion1 = str(calificacion)
 
-        #se guardan los datos en el csv
-        # Abrir archivo csv por pandas y agregar titular
-        # archivo = "csv/calificaciones individuales.csv"
-        # csv = open(archivo, "a")
-        # filas = codigo + "," + nombre + "," + calificacion1 + "\n"
-        # csv.write(filas)
+        #Se guardan los datos en el csv
+        filas = codigo + "," + nombre + "," + calificacion1 + "\n"
+        csv.write(filas)
 
         print(calificacion)
         print(codigo)
@@ -224,6 +226,8 @@ def obtener_respuestas():
                     diccionario = ""
                 # Si letra es igual a "." se rompe el ciclo y se dejan de almacenar los caracteres en la variable diccionario.
                 elif letter == ".":
+                    a = len(linea)
+                    columnas = int(linea[a])
                     break
                 else:
                     diccionario += letter
@@ -242,29 +246,52 @@ def obtener_respuestas():
 #           sola imagen para poder manejar más facil la imagen y no tener problemas con el diccionario.               #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 def recortar_imagen(img):
-    #Recortamos la imagen redimencionada en tres correspondientes a la cantidad de columnas
-    nombres = [ "r1","r2","r3"]
-    primero = 214
-    segundo = 614
-    correctas = 0
+    # Recortamos la imagen redimencionada en tres correspondientes a la cantidad de columnas
+    # Comienza el recorte y calificacion por columnas
 
-    #Comienza el recorte y calificacion por columnas
-    for x in nombres:
-        crop_img = img[506:1850, primero:segundo]
-        cv2.imwrite(x + '.png', crop_img)
-        primero = primero + 400
-        segundo = segundo + 400
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Procedimiento para 2 columnas o más de 25 preguntas y menos o igual a 50.
+    if columnas == 2:
+        nombres = ["r1", "r2"]
+        primero = 214
+        segundo = 814
 
+        for x in nombres:
+            crop_img = img[388:1850, primero:(primero + 500)]
+            cv2.imwrite(x + '.png', crop_img)
+            primero = segundo
 
-    r1 = Image.open('r1.png')
-    r2 = Image.open('r2.png')
-    r3 = Image.open('r3.png')
-    fila = Image.new('RGB', (r1.width, r1.height + r2.height + r3.height))
-    fila.paste(r1, (0, 0))
-    fila.paste(r2, (0, r1.height))
-    fila.paste(r3, (0, r1.height + r2.height))
-    fila.save('fila.png')
+        r1 = Image.open('r1.png')
+        r2 = Image.open('r2.png')
+        fila = Image.new('RGB', (r1.width, r1.height + r2.height))
+        fila.paste(r1, (0, 0))
+        fila.paste(r2, (0, r1.height))
+        fila.save('fila.png')
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Procedimiento para 3 columas o más de 50 preguntas, menor o igual a 75.
+    elif columnas == 3:
+        nombres = ["r1","r2","r3"]
+        primero = 214
+        segundo = 614
+
+        for x in nombres:
+            crop_img = img[506:1850, primero:segundo]
+            cv2.imwrite(x + '.png', crop_img)
+            primero = segundo
+            segundo += 400
+
+        r1 = Image.open('r1.png')
+        r2 = Image.open('r2.png')
+        r3 = Image.open('r3.png')
+        fila = Image.new('RGB', (r1.width, r1.height + r2.height + r3.height))
+        fila.paste(r1, (0, 0))
+        fila.paste(r2, (0, r1.height))
+        fila.paste(r3, (0, r1.height + r2.height))
+        fila.save('fila.png')
+
+    else:
+        print("¡Modo aun no soportado!")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -282,4 +309,4 @@ def eliminar_residuales():
 
 
 # Declaración de una función para que se ejecuté el codigo.
-Non_Zero(ruta_carpeta, ide, esEscan)
+Non_Zero(ruta_carpeta, ide, nombre, esEscan)

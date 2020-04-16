@@ -8,6 +8,12 @@
 </head>
 <body>
     <main>
+        <div class="win_controls">
+            <i id="minimizar" class="demo-icon icon-minus">&#xe805;</i>
+            <i id="maximizar" class="demo-icon icon-window-maximize">&#xf2d0;</i>
+            <i id="cerrar" class="demo-icon icon-cancel-circled">&#xe801;</i>
+        </div>
+
         <nav id="neobar">
             <div id="logo_principal">
                 <img src="../static/images/Icono.png" alt="Icono Repruebainador">
@@ -43,6 +49,7 @@
                         </div>
                     </div>
                     <div class="controles-abajo">
+                        <input type="text" id="nombre_examen" placeholder="Nombre de la evaluación...">
                         <input type="text" id="id_examenes" placeholder="ID de los examenes...">
                         <span id="verificar_id">Verificar</span>
                     </div>
@@ -92,5 +99,6 @@
     </main>
 
     <script src="../static/js/grupo.js"></script>
+    <script src="../static/js/controles_ventana.js"></script>
 </body>
 </html>
