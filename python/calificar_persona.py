@@ -221,7 +221,7 @@ def obtener_respuestas():
                 # Si letra es igual a "." se rompe el ciclo y se dejan de almacenar los caracteres en la variable diccionario.
                 elif letter == ".":
                     a = len(linea)
-                    columnas = int(linea[a])
+                    columnas = int(linea[-1])
                     break
                 else:
                     diccionario += letter
