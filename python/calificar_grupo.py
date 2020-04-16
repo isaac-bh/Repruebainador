@@ -43,9 +43,11 @@ columnas = 0
 
 def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
     Path = pathlib.Path(ruta_carpeta)
+
     # Abrir archivo csv por pandas
-    archivo = "csv/calificaciones individuales.csv"
+    archivo = "csv/" + nombre + ".csv"
     csv = open(archivo, "w")
+
     #Obtiene la imagen correspondiente a cada hoja de respuestas y las recorre
     for imagen in Path.iterdir():
         # Inicialización de imagen con tamaño corregido.
