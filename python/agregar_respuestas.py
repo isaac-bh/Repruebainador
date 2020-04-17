@@ -13,11 +13,11 @@ def escribir_respuestas(respuestas_examen):
     random_id = generar_id()
     # Genera numero de columnas.
     if len(respuestas_examen) <= 25:
-        columnas = 1
+        columnas = "1"
     elif len(respuestas_examen) > 25 and len(respuestas_examen) <= 50:
-        columnas = 2
+        columnas = "2"
     else:
-        columnas = 3
+        columnas = "3"
 
     # Guardar respuestas.
     archivo = open(ruta_archivo, "a")

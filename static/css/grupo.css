@@ -62,6 +62,7 @@ body {
     flex-wrap: wrap;
     border: 2px solid #3c4143;
     border-radius: 25px;
+    margin-top: 2.5rem;
 }
 
 #leyenda {

@@ -7,7 +7,7 @@ const { dialog } = require('electron').remote
 function obtener_respuestas() {
     var ruta_imagen = document.getElementById("oculto").innerHTML;
     var scan = String(document.getElementById("esEscaneada").checked);
-
+    var columnas = document.getElementById("cantidad_columnas").value;
 
     if (ruta_imagen == "") {
         dialog.showErrorBox('Error 1:', 'Ingrese un ID de examen para calificar el examen.');
@@ -18,7 +18,7 @@ function obtener_respuestas() {
             pythonPath: 'python',
             pythonOptions: ['-u'],
             scriptPath: 'python',
-            args: [ruta_imagen, scan]
+            args: [ruta_imagen, scan, columnas]
         };
 
         PythonShell.run('obtener_respuestas.py', options, function (error, resultados) {

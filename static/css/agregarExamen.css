@@ -144,3 +144,36 @@ main {
 	border-left: 2px solid #343c3f;
 	background-color: #1b1f25;
 }
+
+.contScan {
+	padding: 0.5rem;
+	border: 2px dashed #31353b;
+	display: flex;
+	justify-content: space-between;
+	width: 30%;
+}
+
+#contenedor_escan {
+	margin: auto;
+	width: 50%;
+	border-right: 2px dashed #31353b;
+}
+
+#contenedor_columnas {
+	width: 50%;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+}
+
+#contenedor_columnas select {
+	margin: auto;
+	background-color: #1b1f25;
+	border: 2px solid #118af7;
+	border-radius: 10px;
+	font-weight: bolder;
+	color: #118af7;
+	width: 5rem;
+}

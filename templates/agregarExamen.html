@@ -35,9 +35,6 @@
             <li class="en_curso"><a href="agregarExamen.html" class="neobar-link">
                 <i class="demo-icon icon-plus-circled">&#xe800;</i>
             </a></li>
-            <li><a href="" class="neobar-link">
-                <i class="demo-icon icon-ok-circled">&#xe802;</i>
-            </a></li>
         </ul>
     </nav>
 
@@ -46,8 +43,18 @@
         <span id="oculto" style="display: none;"></span>
         <div id="cont">
             <div class="contScan">
-                <input type="checkbox" name="esEscaneada" id="esEscaneada" value="1">
-                <label for="esEscaneada"><span></span>La imagen es escaneada</label>
+                <div id="contenedor_escan">
+                    <input type="checkbox" name="esEscaneada" id="esEscaneada" value="1">
+                    <label for="esEscaneada"><span></span>La imagen es escaneada</label>
+                </div>
+                <div id="contenedor_columnas">
+                    <span>¿De cuantas columnas es el examen?</span>
+                    <select id="cantidad_columnas">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
             </div>
             <div id="holder" class="acomodador">
                 <img src="../static/images/Icono.png" alt="" id="previo">

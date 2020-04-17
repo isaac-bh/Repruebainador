@@ -28,9 +28,10 @@ from os import remove
 
 imgen = sys.argv[1]
 es_escaneada = sys.argv[2]
-columnas = sys.argv[3]
+c = sys.argv[3]
+columnas = int(c)
 
-def Non_Zero(imgen, es_escaneada):
+def Non_Zero(imgen, es_escaneada, columnas):
     imag = Image.open(imgen)
     new_img = imag.resize((1552,2000))
     new_img.save('ajuste.png','png')
