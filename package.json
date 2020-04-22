@@ -1,6 +1,6 @@
 {
   "name": "repruebainador",
-  "version": "2.1.5",
+  "version": "2.3.0",
   "description": "Smart solution for lazy people",
   "main": "main.js",
   "scripts": {
@@ -18,9 +18,24 @@
     "Polinova"
   ],
   "author": "Isaac Benavides, Isaac Lomelí y Joshua Romo.",
-  "license": "CC0-1.0",
+  "license": "MIT",
+  "build": {
+    "appId": "com.repruebainador.app",
+    "asar": true,
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
   "devDependencies": {
-    "electron": "^8.0.1"
+    "electron": "^8.0.1",
+    "electron-builder": "^22.5.1"
   },
   "dependencies": {
     "python-shell": "^1.0.8"

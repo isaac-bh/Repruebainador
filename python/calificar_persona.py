@@ -47,12 +47,12 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     #Recorte de la parte del nombre
     img = cv2.imread('ajuste.png')
-    crop_img = img[160:225, 328:1000]
+    crop_img = img[160:225, 200:1300]
     cv2.imwrite('nombre.png', crop_img)
 
     #Recorte del codigo
     img = cv2.imread('ajuste.png')
-    crop_img = img[220:290, 320:500]
+    crop_img = img[222:290, 200:450]
     cv2.imwrite('codigo.png', crop_img)
 
     #Leer el nombre de quien hizo el examen
@@ -247,15 +247,26 @@ def recortar_imagen(img, columnas):
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Procedimiento para 2 columnas o más de 25 preguntas y menos o igual a 50.
-    if columnas == 2:
-        nombres = ["r1", "r2"]
+    if columnas == 1:
         primero = 214
         segundo = 814
 
+        crop_img = img[430:1900, 580:1020]
+        cv2.imwrite("fila.png", crop_img)
+
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Procedimiento para 2 columnas o más de 25 preguntas y menos o igual a 50. 1552x2000
+    if columnas == 2:
+        nombres = ["r1", "r2"]
+        primero = 0
+        segundo = 776
+
         for x in nombres:
-            crop_img = img[388:1850, primero:(primero + 500)]
+            crop_img = img[430:1900, primero:segundo]
             cv2.imwrite(x + '.png', crop_img)
             primero = segundo
+            segundo += segundo
 
         r1 = Image.open('r1.png')
         r2 = Image.open('r2.png')
@@ -263,7 +274,7 @@ def recortar_imagen(img, columnas):
         fila.paste(r1, (0, 0))
         fila.paste(r2, (0, r1.height))
         fila.save('fila.png')
-
+    
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Procedimiento para 3 columas o más de 50 preguntas, menor o igual a 75.
     elif columnas == 3:
@@ -272,7 +283,7 @@ def recortar_imagen(img, columnas):
         segundo = 614
 
         for x in nombres:
-            crop_img = img[506:1850, primero:segundo]
+            crop_img = img[430:1900, primero:segundo]
             cv2.imwrite(x + '.png', crop_img)
             primero = segundo
             segundo += 400
@@ -285,7 +296,6 @@ def recortar_imagen(img, columnas):
         fila.paste(r2, (0, r1.height))
         fila.paste(r3, (0, r1.height + r2.height))
         fila.save('fila.png')
-
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #

@@ -11,7 +11,6 @@ function calcular() {
   var img = document.getElementById("oculto").innerHTML;
   mostrarResultado = document.getElementById("calficRes");
   var id = document.getElementById('idExamen').value;
-
   // Si no ingreso el ID se devuelve un error, si ingreso un ID entra a el proceso.
   if (id == "") {
     dialog.showErrorBox('Error 1:', 'Ingrese un ID de examen para calificar el examen.');

@@ -1,48 +1,44 @@
-// Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+// Importación de modulos para poder ejecutar la ventana y renderizarla.
+const {app, BrowserWindow} = require('electron');
+const path = require('path');
 
-function createWindow () {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1440,
-    height: 750,
-    autoHideMenuBar: true,
-    frame: false,
-    titleBarStyle: 'hidden',
-    movable: 'true',
-    icon: path.join(__dirname, './static/images/icono.png'),
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
-    }
-  })
+// Función para crear la ventana principal.
+function crear_ventana () {
+    // Definimos la constante mainWindow con un objeto tipo BrowserWindow.
+    const mainWindow = new BrowserWindow({
+        width: 1440,                                                            // Ancho.
+        height: 750,                                                            // Alto.
+        autoHideMenuBar: true,                                                  // Ocultar el menú contextual.
+        frame: false,                                                           // Oculta los bordes que genera el sistema operativo.
+        titleBarStyle: 'hidden',                                                // Oculta la barra de titulo.
+        movable: 'true',                                                        // Define que la ventana a crear se puede mover.
+        icon: path.join(__dirname, './static/images/icono.png'),                // Ruta del icono de la aplicación.
+        webPreferences: {                                       
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: true
+        }
+    })
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('./templates/index.html')
-  //mainWindow.maximize()
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+    // En el momento que se crea la ventana se carga este archivo para mostrar.
+    mainWindow.loadFile('./templates/index.html');
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+// Cuando la aplicación este lista, se ejectura la función createWindow.
+app.on('ready', crear_ventana);
 
-// Quit when all windows are closed.
+// Cuando se cierran todas las ventanas en ejecución, entra a esta función:
 app.on('window-all-closed', function () {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') app.quit()
-})
+    // Si la plataforma en ejecución es MacOS, es necesario que el 
+    // usuario mate el proceso, ya que se ejecutara en segundo plano.
+    if (process.platform !== 'darwin') {
+        app.quit();
+    } 
+});
 
+// Si la app se activa, se ejecuta esta función.
 app.on('activate', function () {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
-})
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+    // Si no hay ninguna ventana ejecutandose, o no se muestra, o su valor es igual a 0, se crea una nueva ventana.
+    if (BrowserWindow.getAllWindows().length === 0) {
+        crear_ventana();
+    }
+});
