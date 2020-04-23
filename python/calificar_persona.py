@@ -47,12 +47,12 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     #Recorte de la parte del nombre
     img = cv2.imread('ajuste.png')
-    crop_img = img[160:225, 200:1300]
+    crop_img = img[230:310, 200:1300]
     cv2.imwrite('nombre.png', crop_img)
 
     #Recorte del codigo
     img = cv2.imread('ajuste.png')
-    crop_img = img[222:290, 200:450]
+    crop_img = img[305:365, 200:450]
     cv2.imwrite('codigo.png', crop_img)
 
     #Leer el nombre de quien hizo el examen
@@ -251,7 +251,7 @@ def recortar_imagen(img, columnas):
         primero = 214
         segundo = 814
 
-        crop_img = img[430:1900, 580:1020]
+        crop_img = img[530:1920, 580:1020]
         cv2.imwrite("fila.png", crop_img)
 
 
@@ -259,14 +259,14 @@ def recortar_imagen(img, columnas):
     # Procedimiento para 2 columnas o más de 25 preguntas y menos o igual a 50. 1552x2000
     if columnas == 2:
         nombres = ["r1", "r2"]
-        primero = 0
-        segundo = 776
+        primero = 250
+        segundo = 800
 
         for x in nombres:
-            crop_img = img[430:1900, primero:segundo]
+            crop_img = img[530:1920, primero:segundo]
             cv2.imwrite(x + '.png', crop_img)
             primero = segundo
-            segundo += segundo
+            segundo += 550
 
         r1 = Image.open('r1.png')
         r2 = Image.open('r2.png')
@@ -283,7 +283,7 @@ def recortar_imagen(img, columnas):
         segundo = 614
 
         for x in nombres:
-            crop_img = img[430:1900, primero:segundo]
+            crop_img = img[530:1920, primero:segundo]
             cv2.imwrite(x + '.png', crop_img)
             primero = segundo
             segundo += 400
@@ -306,9 +306,7 @@ def eliminar_residuales(columnas):
     remove('codigo.png')
     remove('nombre.png')
     remove('fila.png')
-    if columnas == 1:
-        remove('r1.png')
-    elif columnas == 2:
+    if columnas == 2:
         remove('r1.png')
         remove('r2.png')
     elif columnas == 3:
