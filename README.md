@@ -25,8 +25,8 @@ Guia para instalar esta madre:
 ---
 # Por hacer:
     - [ X ] Detección de datos de estudiante mediante OCR.
-    - [ ] Ingreso de datos de estudiante y calificación obtenida en algun archivo.
-    - [ ] Producción en serie.
+    - [ X ] Ingreso de datos de estudiante y calificación obtenida en algun archivo.
+    - [ X ] Producción en serie.
 
 ![Logotipo](static/images/Logo2.png)
 
