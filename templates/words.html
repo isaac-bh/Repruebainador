@@ -3,10 +3,9 @@
 
 <head>
 	<title>Proyecto Manhattan</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/persona.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/words.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
 
-	<script src="../static/js/persona.js" charset="utf-8"></script>
 	<script src="../static/js/dragdrop.js"></script>
 </head>
 
@@ -41,38 +40,30 @@
     </nav>
 
 	<main id="main">
-		<h1>ESCOGE A TU RETADOR</h1>
+		<h1>LLENE LA DEATH NOTE</h1>
 		<div class="contenedor">
 			<div class="dragDrop">
-				<div class="contScan">
-					<input type="checkbox" name="esEscaneada" id="esEscaneada" value="1">
-					<label for="esEscaneada"><span></span>La imagen es escaneada</label>
+				<div class="controles-arriba">
+					 <span id="agregar_carpeta";>Abrir carpeta</span>
 				</div>
-				<div id="validarExamen" class="">
-					<form>
-						<input id="idExamen" type="text" placeholder="ID de examen...">
-					</form>
-					<span id="obtenerExamen" onclick="validarExamen()">VALIDAR</span>
-				</div>
+
+				<br>
+				<label id="advertencia"><span></span>Arrastre su plantilla en el área inferior, posteriormente seleccione la carpeta con la lista.</label>
+				
 				<div id="holder">
 					<img src="../static/images/Icono.png" alt="" id="previo">
-					Arrastre su archivo hacia aqui.
+					Arrastre la plantilla Aqui.
 				</div>
 
 				<span id="oculto" style="display: none;"></span>
-				<div id="controles">
-					<span id="calcular" onclick="calcular()">CALCULAR</span>
-				</div>
+
 			</div>
-			<div id="resultado">
-				<p>Nombre del alumno: <span id="alumnoRes"></span></p>
-				<p>Codigo del alumno: <span id="codigoRes"></span></p>
-				<p>Calificación del alumno: <span id="calficRes"></span></p>
-			</div>
+			
 		</div>
 	</main>
 
-	<script src="../static/js/controles_ventana.js"></script>
+	<script src="../static/js/word.js"></script>
+    <script src="../static/js/controles_ventana.js"></script>
 </body>
 
 </html>

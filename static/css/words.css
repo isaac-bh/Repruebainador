@@ -1,0 +1,161 @@
+* {
+	font-family: arial, helvetica, sans-serif;
+}
+
+body {
+	margin: 0;
+	box-sizing: border-box;
+	position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+	background: #292e30;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #e3e3e3;
+	width: 100vw;
+
+}
+
+@font-face {
+	font-family: "kenyan";
+	src: url("../fonts/kenyan.ttf");
+  }
+
+h1 {
+	font-family: "kenyan";
+	margin: 0;
+	letter-spacing: 5px;
+	text-align: center;
+	font-size: 6rem;
+	color: #e3e3e3;
+	margin-top: 5rem;
+}
+
+.contenedor {
+	text-align: center;
+	border-radius: 15px;
+	display: flex;
+	justify-content: space-around;
+}
+
+#holder {
+	margin: auto;
+	padding: 3rem 2px 3rem 2px;
+	border: 2px dashed #31353b;
+	text-align: center;
+	align-items: center;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.75);
+}
+
+.dragDrop {
+	display: flex;
+	flex-direction: column;
+	height: 50vh;
+	justify-content: flex-start;
+	background-color: #82b0e4;
+	padding-top: 5vh;
+	border-radius: 15px;
+	width: 25vw;
+	color: #31353b;
+}
+
+#controles {
+	margin: 15px auto;
+	width: 150px;
+	padding: 10px 0;
+	border-radius: 25px;
+	cursor: pointer;
+	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.75);
+	transition: all 0.5s;
+}
+
+#controles:hover {
+	box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.25);
+}
+
+.controles-arriba {
+    display: flex;
+    justify-content: center;
+}
+
+#agregar_carpeta, #verificar_id {
+    padding: 0.5rem 2rem;
+    height: 1.2rem;
+    border-radius: 25px;
+    background-color: #1b1f25;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#advertencia{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#previo {
+	margin-top: 5px;
+	width: 75px;
+}
+
+
+#return {
+	width: 50px;
+	position: absolute;
+}
+
+
+/* Barra de progreso. */
+#loader {
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	align-items: center;
+	width: 30vw;
+	height: 30vh;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	overflow-y: hidden;
+	margin: auto;
+	justify-content: space-around;
+	margin-left: 30vw;
+	transition: all 1s;
+	opacity: 0;
+}
+
+.barra-progreso {
+	width: 125px;
+	height: 3px;
+	background: #7ec1f8;
+}
+
+.animacion-barra {
+	width: 0%;
+	height: 100%;
+	background: #a083d2;
+	animation: barra 5s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes barra {
+	100% {width: 100%;}
+}
+
+#main {
+	width: 96vw;
+	height: 100vh;
+	margin: auto;
+	transition: all 1s;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	border-left: 2px solid #343c3f;
+	background-color: #1b1f25;
+}
