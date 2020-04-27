@@ -6,10 +6,11 @@ import random
 import os
 
 respuestas_examen = sys.argv[1]
+nombre_examen = sys.argv[2]
 ruta_absoluta = os.getcwd()
 ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
-def escribir_respuestas(respuestas_examen):
+def escribir_respuestas(respuestas_examen, nombre_examen):
     random_id = generar_id()
     # Genera numero de columnas.
     if len(respuestas_examen) <= 25:
@@ -21,7 +22,7 @@ def escribir_respuestas(respuestas_examen):
 
     # Guardar respuestas.
     archivo = open(ruta_archivo, "a")
-    archivo.write("\n" + random_id + ":" + respuestas_examen + "." + columnas)
+    archivo.write("\n" + random_id + ":" + respuestas_examen + "." + columnas + "$" + nombre_examen)
     print(random_id)
 
 def generar_id():
@@ -49,4 +50,4 @@ def generar_id():
         else:
             return identificador
 
-escribir_respuestas(respuestas_examen)
+escribir_respuestas(respuestas_examen, nombre_examen)

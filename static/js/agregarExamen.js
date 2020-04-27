@@ -11,10 +11,14 @@ function obtener_respuestas() {
     var ruta_imagen = document.getElementById("oculto").innerHTML;
     var scan = String(document.getElementById("esEscaneada").checked);
     var columnas = document.getElementById("cantidad_columnas").value;
+    var nombre = document.getElementById("nombre_examen").value;
 
     // Si el usuario no arrastro ninguna imagen, muestra un error.
     if (ruta_imagen == "") {
         dialog.showErrorBox('Error:', 'Ingrese una imagen para continuar.');
+    }
+    else if(nombre == "") {
+        dialog.showErrorBox('Error:', 'Ingrese un nombre para el examen.');
     }
     else {
         // Se definen opciones para la correcta ejecución de Python y que valores se le van a pasar.
@@ -114,13 +118,14 @@ function obtener_respuestas() {
 function agregar_respuestas() {
     // Se obtienen las respuestas que Python genero anteriormente.
     var ruta_imagen = document.getElementById('auxRespuestas').innerHTML;
-    
+    var nombre = document.getElementById("nombre_examen").value;
+
     // Se definen opciones para la correcta ejecución de Python y que valores se le van a pasar.
     var options = {
         mode: 'text',
         pythonPath: 'python',
         scriptPath: 'python',
-        args: [ruta_imagen]
+        args: [ruta_imagen, nombre]
     };
 
     // Se ejecuta Python, se ejecuta una función donde puede devolver 

@@ -149,6 +149,7 @@ main {
 	padding: 0.5rem;
 	border: 2px dashed #31353b;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	width: 30%;
 }
@@ -189,4 +190,19 @@ main {
 #holder {
 	border: 2px dashed #31353b;
 	padding: 2rem;
+}
+
+.contArriba {
+	display: flex;
+	justify-content: space-around;
+}
+
+#nombre_examen {
+	text-align: center;
+	width: 90%;
+	color: white;
+	background-color: #1b1f25;
+	border: 2px solid #118af7;
+	padding: 0.5rem 0.25rem;
+	border-radius: 25px;
 }
