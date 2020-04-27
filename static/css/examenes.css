@@ -1,0 +1,88 @@
+* {
+	font-family: arial, helvetica, sans-serif;
+}
+
+body {
+	position: absolute;
+	margin: 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	background: #292e30;
+	background-repeat: no-repeat;
+	background-size: cover;
+    color: #e3e3e3;
+    width: 100vw;
+}
+
+main {
+	width: 96vw;
+	height: 100vh;
+	margin: auto;
+	transition: all 1s;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	border-left: 2px solid #343c3f;
+	background-color: #1b1f25;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Oswald;
+    font-size: 5rem;
+    margin: 0 auto;
+}
+
+@font-face {
+	font-family: "Oswald";
+	src: url("../fonts/Oswald-Regular.ttf");
+  }
+
+#cont_examenes {
+    width: 90%;
+    margin: auto;
+    padding: 2rem;
+    border: 2px dashed #343c3f;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.examen {
+    color: white;
+    width: 188px;
+    height: 246px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 2rem;
+}
+
+.col1 {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../images/min1.png);
+}
+
+.col2 {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../images/min2.png);
+}
+
+.col3 {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../images/min3.png);
+}
+
+.nombre_examen {
+    font-family: Oswald;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.id_examen {
+    font-family: Oswald;
+    margin: 0 auto;
+    font-size: 1.25rem;
+}

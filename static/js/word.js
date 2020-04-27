@@ -11,7 +11,7 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
     var plantilla = pathArray[0];
     var lista = document.getElementById("ocultoLista").innerHTML;
     // Si el usuario no ingreso un ID de examen, se muestra un error.
-    if (ruta_carpeta == "") {
+    if (lista == "") {
         dialog.showErrorBox('Error:', 'Ingrese la carpeta con la lista de alumnos.');
     }
     else {
@@ -29,6 +29,8 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
                 args: [lista, plantilla]
             };
 
+            document.getElementById("loader").style.display = "flex";
+
             // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.
             PythonShell.run('lista.py', options, function (error, resultados) {
                 // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
@@ -38,7 +40,10 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
                 }
                 // Si devuelve un resultado valido.
                 else {
-                    dialog.showMessageBox("Los archivos se han generado correctamente");
+                    dialog.showMessageBox({
+                        message: "Examenes generados exitosamente.", 
+                        title: "La tarea se completo con exito."
+                    })
                 }
             });
         }
@@ -46,7 +51,7 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
 });
 
 document.getElementById("abrir_lista").addEventListener("click", function() {
-    const pathArray = dialog.showOpenDialogSync({properties: ['openFile']});
+    const pathArray = dialog.showOpenDialogSync({properties: ['openDirectory']});
     var ruta_lista = pathArray[0];
     document.getElementById("ocultoLista").innerHTML = ruta_lista;
 

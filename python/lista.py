@@ -141,4 +141,13 @@ def Non_Zero(ruta_carpeta,plantilla):
                 segundo = segundo + 73
                 contador = contador + 1
 
+
+def eliminar_residuales():
+    remove('ajuste.png')
+    remove('aver.png')
+    remove('codigo.png')
+    remove('nombre.png')
+    remove('recorte.png')
+
 Non_Zero(ruta_carpeta,plantilla)
+eliminar_residuales()

@@ -138,7 +138,7 @@ function agregar_respuestas() {
             dialog.showMessageBox({
                 message: "Examen guardado exitosamente con el ID: " + resultados, 
                 title: "Tarea completada exitosamente."
-            })
+            });
         }
     });
 }
