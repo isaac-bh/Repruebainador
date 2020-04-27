@@ -1,3 +1,7 @@
+:root {
+	font-size: 14px;
+}
+
 * {
 	font-family: arial, helvetica, sans-serif;
 }
@@ -158,4 +162,41 @@ h1 {
 	border-bottom-left-radius: 25px;
 	border-left: 2px solid #343c3f;
 	background-color: #1b1f25;
+}
+
+h3 {
+	font-size: 3rem;
+	margin: 0.5rem auto;
+}
+
+h4 {
+	font-size: 2rem;
+	margin: 0.5rem auto;
+}
+
+#lista, #plantilla {
+	margin-top: 7.5rem;
+	border: 2px dashed #118af7;
+	padding: 5rem 25rem;
+}
+
+.controles {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.preview {
+	margin: 3rem auto 0 auto;
+	width: 7.5rem;
+}
+
+#abrir_lista, #abrir_plantilla {
+	margin:  1.5rem auto 0 auto;
+	width: 10rem;
+	font-size: 1.4rem;
+	background-color: #118af7;
+	padding: 0.5rem;
+	border-radius: 25px;
+	cursor: pointer;
 }

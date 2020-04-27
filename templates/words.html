@@ -42,24 +42,26 @@
 	<main id="main">
 		<h1>LLENE LA DEATH NOTE</h1>
 		<div class="contenedor">
-			<div class="dragDrop">
-				<div class="controles-arriba">
-					 <span id="agregar_carpeta";>Abrir carpeta</span>
-				</div>
+			<div id="lista">
+                <h3>Primer paso:</h3>
+                <h4>Agrega la lista de alumnos.</h4>
+                <div class="controles">
+                    <img src="../static/images/Icono.png" class="preview">
+                    <span id="abrir_lista">Abrir imagen</span>
+                </div>
+            </div>
 
-				<br>
-				<label id="advertencia"><span></span>Arrastre su plantilla en el área inferior, posteriormente seleccione la carpeta con la lista.</label>
-				
-				<div id="holder">
-					<img src="../static/images/Icono.png" alt="" id="previo">
-					Arrastre la plantilla Aqui.
-				</div>
-
-				<span id="oculto" style="display: none;"></span>
-
-			</div>
-			
+            <div id="plantilla" style="display: none;">
+                <h3>Segundo paso:</h3>
+                <h4>Abre la plantilla.</h4>
+                <div class="controles">
+                    <img src="../static/images/word.png" class="preview">
+                    <span id="abrir_plantilla">Abrir plantilla</span>
+                </div>
+            </div>
 		</div>
+        <span id="ocultoLista" style="display: none;"></span>
+        <span id="ocultoPlantilla" style="display: none;"></span>
 	</main>
 
 	<script src="../static/js/word.js"></script>

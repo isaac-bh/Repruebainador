@@ -40,7 +40,7 @@ body {
 }
 
 #titular h2 {
-    color: #1b1f25;
+    color: #ffffff;
     text-transform: uppercase;
 }
 
@@ -97,6 +97,10 @@ body {
     background-color: #118af7;
 }
 
+#menu #submenu .contSubmenu:hover > .icono {
+    color: #118af7;
+}
+
 .contSubmenu a {
     color: #1b1f25;
     background-color: #fefcff;
@@ -110,8 +114,12 @@ body {
 
 .icono {
     margin: auto;
+    font-size: 7.5rem;
     width: 7.5rem;
+    height: 7.5rem;
     cursor: pointer;
+    transition: color 0.75s;
+    margin-bottom: 2rem;
 }
 
 section {

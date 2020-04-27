@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/agregarExamen.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
-    <script src="../static/js/dragdrop.js"></script>
-    <script src="../static/js/agregarExamen.js"></script>
     <title>Agregar respuestas a la Base de Datos</title>
 </head>
 
@@ -61,7 +59,7 @@
             </div>
             <div id="holder" class="acomodador">
                 <img src="../static/images/Icono.png" alt="" id="previo">
-                Arrastre su archivo hacia aqui.
+                <span id="agregar_imagen">Abrir imagen</span>
             </div>
             <span id="obtenereExamen" onclick="obtener_respuestas();">Guardar respuestas de este examen</span>
         </div>
@@ -72,6 +70,7 @@
     </main>
 
     <script src="../static/js/controles_ventana.js"></script>
+    <script src="../static/js/agregarExamen.js"></script>
 </body>
     
 </html>

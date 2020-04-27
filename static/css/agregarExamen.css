@@ -177,3 +177,16 @@ main {
 	color: #118af7;
 	width: 5rem;
 }
+
+#agregar_imagen {
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: #118af7;
+	cursor: pointer;
+	border-radius: 25px;
+}
+
+#holder {
+	border: 2px dashed #31353b;
+	padding: 2rem;
+}
