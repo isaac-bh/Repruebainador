@@ -5,3 +5,4 @@ imutils
 scipy
 pytesseract
 pandas
+docx
