@@ -10,6 +10,7 @@ import platform
 import pytesseract
 import sys
 import time
+import os
 from docx import Document
 from docx.shared import Pt
 from imutils import contours
@@ -25,7 +26,9 @@ ruta_carpeta = sys.argv[1]
 plantilla = sys.argv[2]
 
 def Non_Zero(ruta_carpeta,plantilla):
-    Path = pathlib.Path('Words')
+    homedir = os.path.expanduser("~")
+    directorio_documentos = homedir + "\\Documents\\Repruebainador\\Words\\"
+    Path = pathlib.Path(directorio_documentos)
     for imagen in Path.iterdir():
         remove(imagen)
 
@@ -39,8 +42,8 @@ def Non_Zero(ruta_carpeta,plantilla):
         crop_img = img[780:850, 1590:1710]
         cv2.imwrite('aver.png', crop_img)
 
-        os = platform.system()
-        if os == "Windows":
+        so = platform.system()
+        if so == "Windows":
             pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract'
             TESSDATA_PREFIX = 'C:/Program Files/Tesseract-OCR'
         output = pytesseract.image_to_string(PIL.Image.open('aver.png').convert("RGB"), lang='eng', config='--psm 4 --oem 3')
@@ -86,7 +89,7 @@ def Non_Zero(ruta_carpeta,plantilla):
                             font.name = 'Arial'
                             font.size = Pt(12)
 
-                    doc.save('Words/' + salida + '.docx') 
+                    doc.save(directorio_documentos + salida + '.docx') 
 
 
                 primero = primero + 73
@@ -135,7 +138,7 @@ def Non_Zero(ruta_carpeta,plantilla):
                             font.name = 'Arial'
                             font.size = Pt(12)
 
-                    doc.save('Words/' + salida + '.docx') 
+                    doc.save(directorio_documentos + salida + '.docx') 
 
                 primero = primero + 73
                 segundo = segundo + 73

@@ -44,7 +44,9 @@ def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
     Path = pathlib.Path(ruta_carpeta)
 
 # Abrir archivo csv por pandas
-    archivo = "csv/" + nombre + ".csv"
+    homedir = os.path.expanduser("~")
+    directorio_documentos = homedir + "\\Documents\\Repruebainador\\CSV\\"
+    archivo = directorio_documentos + nombre + ".csv"
     if os.path.isfile(archivo):
         calificacion = -1;
         print(calificacion)

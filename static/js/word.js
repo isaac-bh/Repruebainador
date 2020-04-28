@@ -29,8 +29,6 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
                 args: [lista, plantilla]
             };
 
-            document.getElementById("loader").style.display = "flex";
-
             // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.
             PythonShell.run('lista.py', options, function (error, resultados) {
                 // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
@@ -43,7 +41,7 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
                     dialog.showMessageBox({
                         message: "Examenes generados exitosamente.", 
                         title: "La tarea se completo con exito."
-                    })
+                    });
                 }
             });
         }

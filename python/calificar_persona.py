@@ -157,7 +157,9 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
 
     #se guardan los datos en el csv
     # Abrir archivo csv por pandas
-    archivo = "csv/calificaciones individuales.csv"
+    homedir = os.path.expanduser("~")
+    directorio_documentos = homedir + "\\Documents\\Repruebainador\\CSV\\"
+    archivo = directorio_documentos + "calificaciones individuales.csv"
     csv = open(archivo, "a")
     filas = codigo + "," + nombre + "," + str(calificacion) + "\n"
     csv.write(filas)
