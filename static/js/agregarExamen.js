@@ -9,7 +9,6 @@ const { dialog } = require('electron').remote
 function obtener_respuestas() {
     // Se obtienen valores que el usuario ingresa en la interfaz y se guardan en variables para manejarlas posteriormente.
     var ruta_imagen = document.getElementById("oculto").innerHTML;
-    var scan = String(document.getElementById("esEscaneada").checked);
     var columnas = document.getElementById("cantidad_columnas").value;
     var nombre = document.getElementById("nombre_examen").value;
 
@@ -26,7 +25,7 @@ function obtener_respuestas() {
             mode: 'text',
             pythonPath: 'python',
             scriptPath: 'python',
-            args: [ruta_imagen, scan, columnas]
+            args: [ruta_imagen, columnas]
         };
 
         // Se ejecuta Python, se ejecuta una función donde puede devolver 

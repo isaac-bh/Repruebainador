@@ -13,11 +13,9 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
     const pathArray = dialog.showOpenDialogSync({properties: ['openDirectory']});
     var ruta_carpeta = pathArray[0];
 
-    // Se obtienen valores que el usuario ingreso en la interfaz. Identificador del examen, el nombre del grupo
-    // y si las imagenes son escaneadas.
+    // Se obtienen valores que el usuario ingreso en la interfaz. Identificador del examen, el nombre del grupo.
     var id_examenes = document.getElementById("id_examenes").value;
     var nombre_examen = document.getElementById("nombre_examen").value;
-    var scan = String(document.getElementById("esEscaneada").checked);
 
     // Si el usuario no ingreso un ID de examen, se muestra un error.
     if (id_examenes == "") {
@@ -35,7 +33,7 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                 mode: 'text',
                 pythonPath: 'python',
                 scriptPath: 'python', 
-                args: [ruta_carpeta, id_examenes, nombre_examen, scan]
+                args: [ruta_carpeta, id_examenes, nombre_examen]
             };
 
             // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.

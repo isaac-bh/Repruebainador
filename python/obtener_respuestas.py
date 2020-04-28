@@ -27,11 +27,10 @@ from os import remove
 
 
 imgen = sys.argv[1]
-es_escaneada = sys.argv[2]
-c = sys.argv[3]
+c = sys.argv[2]
 columnas = int(c)
 
-def Non_Zero(imgen, es_escaneada, columnas):
+def Non_Zero(imgen, columnas):
     imag = Image.open(imgen)
     new_img = imag.resize((1552,2000))
     new_img.save('ajuste.png','png')
@@ -66,16 +65,9 @@ def Non_Zero(imgen, es_escaneada, columnas):
             if len(aprox) == 4:
                 num_Contornos = aprox
                 break
-    
-    # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada. 
-    if es_escaneada == "true":
-        base = imagen # four_point_transform(imagen, num_Contornos.reshape(4, 2))
-        recortado = escala_Grises #four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
-    elif es_escaneada == "false":
-        base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
-        recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
-    else:
-        exit()
+
+    base = imagen 
+    recortado = escala_Grises 
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
     umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
@@ -206,4 +198,4 @@ def eliminar_residuales(columnas):
 
 
 
-Non_Zero(imgen, es_escaneada, columnas)
+Non_Zero(imgen, columnas)

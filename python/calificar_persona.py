@@ -35,11 +35,10 @@ from os import remove
 
 img = sys.argv[1]
 ide = sys.argv[2]
-esEscan = sys.argv[3]
 ruta_absoluta = os.getcwd()
 ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
-def Non_Zero(ruta_Imagen, ide, esEscan):
+def Non_Zero(ruta_Imagen, ide):
     # Inicialización de imagen con tamaño corregido.
     img = Image.open(ruta_Imagen)
     new_img = img.resize((1552,2000))
@@ -88,13 +87,9 @@ def Non_Zero(ruta_Imagen, ide, esEscan):
                 num_Contornos = aprox
                 break
 
-    # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada.
-    if esEscan == "true":
-        base = imagen
-        recortado = escala_Grises
-    elif esEscan == "false":
-        base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
-        recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
+    
+    base = imagen
+    recortado = escala_Grises
 
     # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
     umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
@@ -319,4 +314,4 @@ def eliminar_residuales(columnas):
 
 
 # Declaración de una función para que se ejecuté el codigo.
-Non_Zero(img, ide, esEscan)
+Non_Zero(img, ide)

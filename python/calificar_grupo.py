@@ -36,14 +36,12 @@ from os import remove
 ruta_carpeta = sys.argv[1]
 ide = sys.argv[2]
 nombre = sys.argv[3]
-esEscan = sys.argv[4]
 ruta_absoluta = os.getcwd()
 ruta_archivo = ruta_absoluta + "/python/respuestasExamenes.txt"
 
-def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
+def Non_Zero(ruta_carpeta, ide, nombre):
     Path = pathlib.Path(ruta_carpeta)
-
-# Abrir archivo csv por pandas
+    # Abrir archivo csv por pandas
     homedir = os.path.expanduser("~")
     directorio_documentos = homedir + "\\Documents\\Repruebainador\\CSV\\"
     archivo = directorio_documentos + nombre + ".csv"
@@ -103,13 +101,9 @@ def Non_Zero(ruta_carpeta, ide, nombre, esEscan):
                         num_Contornos = aprox
                         break
 
-            # Aplicamos la perspectiva para transformar la imagen original en una imagen mejor presentada.
-            if esEscan == "true":
-                base = imagen
-                recortado = escala_Grises
-            elif esEscan == "false":
-                base = four_point_transform(imagen, num_Contornos.reshape(4, 2))
-                recortado = four_point_transform(escala_Grises, num_Contornos.reshape(4, 2))
+            
+            base = imagen
+            recortado = escala_Grises
 
             # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
             umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
@@ -331,4 +325,4 @@ def eliminar_residuales(columnas):
 
 
 # Declaración de una función para que se ejecuté el codigo.
-Non_Zero(ruta_carpeta, ide, nombre, esEscan)
+Non_Zero(ruta_carpeta, ide, nombre)

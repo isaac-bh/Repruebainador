@@ -7,7 +7,6 @@ const { dialog } = require('electron').remote
 // Función que llama a main.py para calcular la calificación del alumno.
 function calcular() {
   // Obtenemos valores que necesitamos para enviarlos a Python.
-  var scan = String(document.getElementById("esEscaneada").checked);
   var img = document.getElementById("oculto").innerHTML;
   mostrarResultado = document.getElementById("calficRes");
   var id = document.getElementById('idExamen').value;
@@ -21,7 +20,7 @@ function calcular() {
       pythonPath: 'python',
       pythonOptions: ['-u'],
       scriptPath: 'python', // Carpeta donde guardamos los scripts python.
-      args: [img, id, scan]
+      args: [img, id]
     };
 
     // Ejecutamos Python.
