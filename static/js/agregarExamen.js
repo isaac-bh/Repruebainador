@@ -28,7 +28,7 @@ function obtener_respuestas() {
             args: [ruta_imagen, columnas]
         };
 
-        // Se ejecuta Python, se ejecuta una función donde puede devolver 
+        // Se ejecuta Python, se ejecuta una función donde puede devolver
         // dos posibles cosas, un error o resultados correctos.
         PythonShell.run('obtener_respuestas.py', options, function (error, resultados) {
             // Si existe un error, se muestra un mensaje de error. Y se imprime el error explicitamente en la consola
@@ -46,6 +46,10 @@ function obtener_respuestas() {
                 // se muestra con el estilo "flex" para que muestre de manera correcta todas las preguntas.
                 var contenedor = document.getElementById("respuestasObtenidas");
                 contenedor.style.display = "flex";
+                var contenedor1 = document.getElementById("comparar");
+                contenedor1.style.display = "flex";
+                var contenedor2 = document.getElementById("Padre");
+                contenedor2.style.display = "flex";
 
                 // Se declara una variable y se guardan en forma de cadena de caracteres los resultados que devuelva Python.
                 var respuestas_extraidas = String(resultados);
@@ -56,50 +60,50 @@ function obtener_respuestas() {
                     if (respuestas_extraidas[i] == "0") {                           // Si la respuesta de la pregunta en curso es A
                         contenedor.innerHTML += '<div class="pregunta">' +          // Se inyecta en el contenedor con el inciso A
                             ' <span class="numeroPregunta">'+ aux +'. </span>' +    // Como respondida.
-                            ' <div class="inciso contestada">A</div>' + 
-                            ' <div class="inciso">B</div>' + 
-                            ' <div class="inciso">C</div>' + 
-                            ' <div class="inciso">D</div>' + 
+                            ' <div class="inciso contestada">A</div>' +
+                            ' <div class="inciso">B</div>' +
+                            ' <div class="inciso">C</div>' +
+                            ' <div class="inciso">D</div>' +
                             ' <div class="inciso">E</div>' +
                             '</div>';
                     }
                     else if (respuestas_extraidas[i] == "1") {                      // Si la respuesta de la pregunta en curso es B
                         contenedor.innerHTML += '<div class="pregunta">' +          // Se inyecta en el contenedor con el inciso B
                             ' <span class="numeroPregunta">'+ aux +'. </span>' +    // Como respondida.
-                            ' <div class="inciso">A</div>' +                        
-                            ' <div class="inciso contestada">B</div>' + 
-                            ' <div class="inciso">C</div>' + 
-                            ' <div class="inciso">D</div>' + 
+                            ' <div class="inciso">A</div>' +
+                            ' <div class="inciso contestada">B</div>' +
+                            ' <div class="inciso">C</div>' +
+                            ' <div class="inciso">D</div>' +
                             ' <div class="inciso">E</div>' +
                             '</div>';
                     }
                     else if (respuestas_extraidas[i] == "2") {                      // Si la respuesta de la pregunta en curso es C
                         contenedor.innerHTML += '<div class="pregunta">' +          // Se inyecta en el contenedor con el inciso C
                             ' <span class="numeroPregunta">'+ aux +'. </span>' +    // Como respondida.
-                            ' <div class="inciso">A</div>' + 
-                            ' <div class="inciso">B</div>' + 
-                            ' <div class="inciso contestada">C</div>' + 
-                            ' <div class="inciso">D</div>' + 
+                            ' <div class="inciso">A</div>' +
+                            ' <div class="inciso">B</div>' +
+                            ' <div class="inciso contestada">C</div>' +
+                            ' <div class="inciso">D</div>' +
                             ' <div class="inciso">E</div>' +
                             '</div>';
                     }
                     else if (respuestas_extraidas[i] == "3") {                      // Si la respuesta de la pregunta en curso es D
                         contenedor.innerHTML += '<div class="pregunta">' +          // Se inyecta en el contenedor con el inciso D
                             ' <span class="numeroPregunta">'+ aux +'. </span>' +    // Como respondida.
-                            ' <div class="inciso">A</div>' + 
-                            ' <div class="inciso">B</div>' + 
-                            ' <div class="inciso">C</div>' + 
-                            ' <div class="inciso contestada">D</div>' + 
+                            ' <div class="inciso">A</div>' +
+                            ' <div class="inciso">B</div>' +
+                            ' <div class="inciso">C</div>' +
+                            ' <div class="inciso contestada">D</div>' +
                             ' <div class="inciso">E</div>' +
                             '</div>';
-                    }   
+                    }
                     else if (respuestas_extraidas[i] == "4") {                      // Si la respuesta de la pregunta en curso es E
                         contenedor.innerHTML += '<div class="pregunta">' +          // Se inyecta en el contenedor con el inciso E
                             ' <span class="numeroPregunta">'+ aux +'. </span>' +    // Como respondida.
-                            ' <div class="inciso">A</div>' + 
-                            ' <div class="inciso">B</div>' + 
-                            ' <div class="inciso">C</div>' + 
-                            ' <div class="inciso">D</div>' + 
+                            ' <div class="inciso">A</div>' +
+                            ' <div class="inciso">B</div>' +
+                            ' <div class="inciso">C</div>' +
+                            ' <div class="inciso">D</div>' +
                             ' <div class="inciso contestada">E</div>' +
                             '</div>';
                     }
@@ -108,6 +112,7 @@ function obtener_respuestas() {
                 // Cuando termina de inyectar el examen a la interfaz, se agrega un botón para que confirme que si son las respuestas que esperaba.
                 contenedor.innerHTML += '<span id="validarOperacion" onclick="agregar_respuestas();">¡Si! es correcto</span>';
                 document.getElementById('auxRespuestas').innerHTML = respuestas_extraidas;
+                contenedor1.innerHTML += '<img id="imagen" src="'+ ruta_imagen +'" style="width: 100%;"></img>'
             }
         });
     }
@@ -127,7 +132,7 @@ function agregar_respuestas() {
         args: [ruta_imagen, nombre]
     };
 
-    // Se ejecuta Python, se ejecuta una función donde puede devolver 
+    // Se ejecuta Python, se ejecuta una función donde puede devolver
     // dos posibles cosas, un error o resultados correctos.
     PythonShell.run('agregar_respuestas.py', options, function (error, resultados) {
         // Si existe un error, se muestra un mensaje de error. Y se imprime el error explicitamente en la consola
@@ -140,7 +145,7 @@ function agregar_respuestas() {
         else {
             // Se muestra un mensaje de confirmación de que las respuestas fueron guardadas junto con el identificador unico.
             dialog.showMessageBox({
-                message: "Examen guardado exitosamente con el ID: " + resultados, 
+                message: "Examen guardado exitosamente con el ID: " + resultados,
                 title: "Tarea completada exitosamente."
             });
         }
