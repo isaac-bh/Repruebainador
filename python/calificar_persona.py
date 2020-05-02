@@ -27,6 +27,8 @@ import pytesseract
 import sys
 import time
 import pandas as pd
+from datetime import date
+from datetime import datetime
 from imutils import contours
 from imutils.perspective import four_point_transform
 from pytesseract import image_to_string
@@ -152,9 +154,10 @@ def Non_Zero(ruta_Imagen, ide):
 
     #se guardan los datos en el csv
     # Abrir archivo csv por pandas
+    today = date.today()
     homedir = os.path.expanduser("~")
     directorio_documentos = homedir + "\\Documents\\Repruebainador\\CSV\\"
-    archivo = directorio_documentos + "calificaciones individuales.csv"
+    archivo = directorio_documentos + str(today) + " calificaciones individuales.csv"
     csv = open(archivo, "a")
     filas = codigo + "," + nombre + "," + str(calificacion) + "\n"
     csv.write(filas)
