@@ -132,3 +132,12 @@ section {
     border-left: 2px solid #343c3f;
 }
 
+.udg {
+    padding-top: 2.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.udg img {
+    width: 30%;
+}

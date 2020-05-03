@@ -41,12 +41,14 @@ h1 {
 
 #cont_examenes {
     width: 90%;
+    height: 80%;
     margin: auto;
     padding: 2rem;
     border: 2px dashed #343c3f;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
+    overflow: scroll;
 }
 
 .examen {

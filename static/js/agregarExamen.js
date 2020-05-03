@@ -46,10 +46,10 @@ function obtener_respuestas() {
                 // se muestra con el estilo "flex" para que muestre de manera correcta todas las preguntas.
                 var contenedor = document.getElementById("respuestasObtenidas");
                 contenedor.style.display = "flex";
-                var contenedor1 = document.getElementById("comparar");
-                contenedor1.style.display = "flex";
-                var contenedor2 = document.getElementById("Padre");
-                contenedor2.style.display = "flex";
+                var imagen_examen = document.getElementById("comparar");
+                imagen_examen.style.display = "flex";
+                var contenedor_padre = document.getElementById("Padre");
+                contenedor_padre.style.display = "flex";
 
                 // Se declara una variable y se guardan en forma de cadena de caracteres los resultados que devuelva Python.
                 var respuestas_extraidas = String(resultados);
@@ -112,7 +112,7 @@ function obtener_respuestas() {
                 // Cuando termina de inyectar el examen a la interfaz, se agrega un botón para que confirme que si son las respuestas que esperaba.
                 contenedor.innerHTML += '<span id="validarOperacion" onclick="agregar_respuestas();">¡Si! es correcto</span>';
                 document.getElementById('auxRespuestas').innerHTML = respuestas_extraidas;
-                contenedor1.innerHTML += '<img id="imagen" src="'+ ruta_imagen +'" style="width: 100%;"></img>'
+                imagen_examen.innerHTML += '<img id="imagen" src="'+ ruta_imagen +'" style="width: 100%; height: 100%;"></img>'
             }
         });
     }
