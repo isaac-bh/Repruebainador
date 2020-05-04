@@ -114,45 +114,6 @@ h1 {
 	position: absolute;
 }
 
-
-/* Barra de progreso. */
-#loader {
-	margin: 0;
-	padding: 0;
-	vertical-align: middle;
-	align-items: center;
-	width: 30vw;
-	height: 30vh;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	overflow-y: hidden;
-	margin: auto;
-	justify-content: space-around;
-	margin-left: 30vw;
-	transition: all 1s;
-	opacity: 0;
-}
-
-.barra-progreso {
-	width: 125px;
-	height: 3px;
-	background: #7ec1f8;
-}
-
-.animacion-barra {
-	width: 0%;
-	height: 100%;
-	background: #a083d2;
-	animation: barra 5s;
-	animation-iteration-count: infinite;
-}
-
-@keyframes barra {
-	100% {width: 100%;}
-}
-
 #main {
 	width: 96vw;
 	height: 100vh;
