@@ -36,12 +36,17 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                 args: [ruta_carpeta, id_examenes, nombre_examen]
             };
 
+            loader.style.display = "block";
+		    loader.style.opacity = "1";
+
             // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.
             PythonShell.run('calificar_grupo.py', options, function (error, resultados) {
                 // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
                 if (error) {
                     dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
                     console.log(error);
+                    loader.style.opacity = "0";
+				    loader.style.display = "none";
                 }
                 // Si devuelve un resultado valido.
                 else {
@@ -100,6 +105,9 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                             i = i + 2;
                         }
                     }
+                    
+                    loader.style.opacity = "0";
+                    loader.style.display = "none";
                 }
             });
         }
@@ -120,7 +128,7 @@ document.getElementById("verificar_id").addEventListener("click", function() {
     PythonShell.run('validar_examen.py', options, function (error, resultados) {
         // Si existe un error, lo imprime en un alert.
         if (error) {
-          dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+            dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
         }
 
         // Si el resultado devuelto por Python es True, se le dice al usuario que si existe y en caso contrario le dice que no existe

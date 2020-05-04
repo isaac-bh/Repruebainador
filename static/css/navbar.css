@@ -12,6 +12,13 @@
     display: none;
 }
 
+:root {
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .demo-icon {
       font-family: "fontello";
       font-style: normal;
@@ -124,4 +131,73 @@
 
 .win_controls i:hover {
     color: #118af7;
+}
+
+/* Loader */
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #2d3136;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: opacity .25s ease-in-out;
+}
+
+.progreso-main {
+    border-top: 5px solid #7e57c2;
+    width: 330px;
+    height: 330px;
+    margin: auto;
+    margin-top: 30vh;
+    border-radius: 50%;
+    animation: rotacion-main 10s ease-in-out infinite;
+}
+
+.progreso {
+    width: 280px;
+    height: 280px;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 50%;
+    border-bottom: 5px solid #5eb2f6;
+    animation: rotacion 10s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes rotacion {
+    0% { transform: rotate(0deg);}
+    50% {border-color: #7e57c2;}
+    100% { transform: rotate(720deg);
+        border-color: #5eb2f6;
+    }
+}
+
+@keyframes rotacion-main {
+    0% {transform: rotate(0deg);}
+    50% { border-color: #5eb2f6;}
+    100% { transform: rotate(1080deg); 
+        border-color: #7e57c2;
+    }
+}
+
+@keyframes parpadeo {
+    0% {opacity: 1;}
+    25% {opacity: 0.5;}
+    50% {opacity: 1;}
+    75% {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+
+#fijo {
+    position: absolute;
+    top: 35vh;
+    left: 43.7vw;
+    animation: parpadeo 10s ease-in-out infinite;
+}
+
+#texto-loader {
+    font-size: 1.5rem;
+    text-align: center;
 }

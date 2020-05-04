@@ -15,12 +15,12 @@ body {
 }
 
 @font-face {
-	font-family: "kenyan";
-	src: url("../fonts/kenyan.ttf");
-  }
+    font-family: 'Oswald';
+    src: url('../fonts/Oswald-Regular.ttf');
+}
 
 h1 {
-	font-family: "kenyan";
+	font-family: "Oswald";
 	margin: 2.5rem 0 0 0;
 	letter-spacing: 5px;
 	text-align: center;

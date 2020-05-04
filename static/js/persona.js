@@ -18,6 +18,8 @@ function calcular() {
 	var img = document.getElementById("oculto").innerHTML;
 	mostrarResultado = document.getElementById("calificRes");
 	var id = document.getElementById('idExamen').value;
+
+	var loader = document.getElementById('loader');
 	// Si no ingreso el ID se devuelve un error, si ingreso un ID entra a el proceso.
 	if (id == "") {
 		dialog.showErrorBox('Error 1:', 'Ingrese un ID de examen para calificar el examen.');
@@ -31,12 +33,17 @@ function calcular() {
 			args: [img, id]
 		};
 
+		loader.style.display = "block";
+		loader.style.opacity = "1";
+
 		// Ejecutamos Python.
 		PythonShell.run('calificar_persona.py', options, function (error, resultados) {
 			// Si existe un error, lo imprime en un alert.
 			if (error) {
 				dialog.showErrorBox('Error 2-5:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
 				console.log(error);
+				loader.style.opacity = "0";
+				loader.style.display = "none";
 			}
 
 			// Convertimos el resultado obtenido devuelto por Python a Float para manejarlo más facil.
@@ -54,7 +61,11 @@ function calcular() {
 				mostrarResultado.classList.add("reprobado");
 				mostrarResultado.innerHTML = x;
 			}
+
+			loader.style.opacity = "0";
+			loader.style.display = "none";
 		});
+
 	}
 }
 

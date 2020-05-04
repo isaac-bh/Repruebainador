@@ -28,6 +28,9 @@ function obtener_respuestas() {
             args: [ruta_imagen, columnas]
         };
 
+        loader.style.display = "block";
+		loader.style.opacity = "1";
+
         // Se ejecuta Python, se ejecuta una función donde puede devolver
         // dos posibles cosas, un error o resultados correctos.
         PythonShell.run('obtener_respuestas.py', options, function (error, resultados) {
@@ -36,6 +39,8 @@ function obtener_respuestas() {
             if (error) {
                 dialog.showErrorBox('Error 10:', 'Consulta el manual de usuario para ver que puede causar este error.');
                 console.log(error);
+                loader.style.opacity = "0";
+				loader.style.display = "none";
             }
             // En caso contrario de que exista un error.
             else {
@@ -113,6 +118,9 @@ function obtener_respuestas() {
                 contenedor.innerHTML += '<span id="validarOperacion" onclick="agregar_respuestas();">¡Si! es correcto</span>';
                 document.getElementById('auxRespuestas').innerHTML = respuestas_extraidas;
                 imagen_examen.innerHTML += '<img id="imagen" src="'+ ruta_imagen +'" style="width: 100%; height: 100%;"></img>'
+
+                loader.style.opacity = "0";
+				loader.style.display = "none";
             }
         });
     }
