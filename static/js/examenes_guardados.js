@@ -4,11 +4,12 @@ const fs = require("fs");
 window.addEventListener('load', function() {
     // Asynchronous read
     fs.readFile('./python/respuestasExamenes.txt', function (err, data) {
+        var contenedor = document.getElementById("cont_examenes");
+
         if (err) {
-            return console.error(err);
+            contenedor.innerHTML = "Error 3: Archivo de respuestas no encontrado.";
         }
         
-        var contenedor = document.getElementById("cont_examenes");
         var allText = data.toString();
         var lineas = allText.split("\n");
                 

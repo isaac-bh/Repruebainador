@@ -14,10 +14,10 @@ function obtener_respuestas() {
 
     // Si el usuario no arrastro ninguna imagen, muestra un error.
     if (ruta_imagen == "") {
-        dialog.showErrorBox('Error:', 'Ingrese una imagen para continuar.');
+        dialog.showErrorBox('Error 1:', 'Ingrese una imagen para continuar.');
     }
     else if(nombre == "") {
-        dialog.showErrorBox('Error:', 'Ingrese un nombre para el examen.');
+        dialog.showErrorBox('Error 2:', 'Ingrese un nombre para el examen.');
     }
     else {
         // Se definen opciones para la correcta ejecución de Python y que valores se le van a pasar.
@@ -37,7 +37,7 @@ function obtener_respuestas() {
             // Si existe un error, se muestra un mensaje de error. Y se imprime el error explicitamente en la consola
             // esto para que el programador tenga una idea más clara de que es lo que esta fallando.
             if (error) {
-                dialog.showErrorBox('Error 10:', 'Consulta el manual de usuario para ver que puede causar este error.');
+                dialog.showErrorBox('Error INDEXM:', 'Consulta el manual de usuario para ver que puede causar este error.');
                 console.log(error);
                 loader.style.opacity = "0";
 				loader.style.display = "none";
@@ -146,7 +146,7 @@ function agregar_respuestas() {
         // Si existe un error, se muestra un mensaje de error. Y se imprime el error explicitamente en la consola
         // esto para que el programador tenga una idea más clara de que es lo que esta fallando.
         if (error) {
-            dialog.showErrorBox('Error:', 'Consulta el manual de usuario para ver que puede causar este error.');
+            dialog.showErrorBox('Error 3:', 'Archivo respuestasExamenes.txt no encontrado.');
             console.log(error);
         }
         // En caso contrario, si devuelve un resultado exitoso.

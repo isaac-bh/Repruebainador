@@ -22,7 +22,7 @@ function calcular() {
 	var loader = document.getElementById('loader');
 	// Si no ingreso el ID se devuelve un error, si ingreso un ID entra a el proceso.
 	if (id == "") {
-		dialog.showErrorBox('Error 1:', 'Ingrese un ID de examen para calificar el examen.');
+		dialog.showErrorBox('Error 4:', 'Ingrese un ID de examen para calificar el examen.');
 	} else {
 		// Declaramos opciones para que funcione optimamente la comunicación entre Python y JavaScript.
 		var options = {
@@ -40,7 +40,7 @@ function calcular() {
 		PythonShell.run('calificar_persona.py', options, function (error, resultados) {
 			// Si existe un error, lo imprime en un alert.
 			if (error) {
-				dialog.showErrorBox('Error 2-5:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+				dialog.showErrorBox('Error INDPER:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
 				console.log(error);
 				loader.style.opacity = "0";
 				loader.style.display = "none";
@@ -86,7 +86,7 @@ function validarExamen() {
 	PythonShell.run('validar_examen.py', options, function (error, resultados) {
 		// Si existe un error, lo imprime en un alert.
 		if (error) {
-			dialog.showErrorBox('Error 6:', 'Fallo Python, amén.');
+			dialog.showErrorBox('Error INDPY:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
 			console.log(error);
 		}
 

@@ -233,6 +233,7 @@ def obtener_respuestas():
         # Se guarda en respuestas_Correctas el valor de diccionario en el campo que vaya el bucle.
         respuestas_correc[x] = int(diccionario[x])
 
+    eliminar_residuales(columnas)
     return respuestas_correc, columnas
 
 

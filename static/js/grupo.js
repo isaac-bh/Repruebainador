@@ -19,12 +19,12 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
 
     // Si el usuario no ingreso un ID de examen, se muestra un error.
     if (id_examenes == "") {
-        dialog.showErrorBox('Error:', 'Ingrese un ID de examen para calificar el examen.');
+        dialog.showErrorBox('Error 4:', 'Ingrese un ID de examen para calificar el examen.');
     }
     else {
         // Si el usuario no nombro al grupo, muestra un error.
         if (nombre_examen == "") {
-            dialog.showErrorBox('Error:', 'Ingrese un nombre de identificación de grupo para guardar los datos correctamente.');
+            dialog.showErrorBox('Error 5:', 'Ingrese un nombre de identificación de grupo para guardar los datos correctamente.');
         }
         else{
 
@@ -43,7 +43,7 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
             PythonShell.run('calificar_grupo.py', options, function (error, resultados) {
                 // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
                 if (error) {
-                    dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+                    dialog.showErrorBox('Error INDGRP:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
                     console.log(error);
                     loader.style.opacity = "0";
 				    loader.style.display = "none";
@@ -55,7 +55,7 @@ document.getElementById("agregar_carpeta").addEventListener("click", function() 
                     // Si el resultado devuelto por Python es igual a un -1, significa que el nombre que le puso al grupo, ya existia
                     // entonces necesita cambiar el nombre.
                     if (resultados[0] == -1) {
-                      dialog.showErrorBox('Error:', 'El nombre del archivo ya existe');
+                      dialog.showErrorBox('Error 6:', 'El nombre del archivo ya existe');
                     }
                     // Si el resultado es cualquier otro:
                     else {
@@ -128,7 +128,7 @@ document.getElementById("verificar_id").addEventListener("click", function() {
     PythonShell.run('validar_examen.py', options, function (error, resultados) {
         // Si existe un error, lo imprime en un alert.
         if (error) {
-            dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+            dialog.showErrorBox('Error INDPY:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
         }
 
         // Si el resultado devuelto por Python es True, se le dice al usuario que si existe y en caso contrario le dice que no existe

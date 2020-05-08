@@ -12,12 +12,12 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
     var lista = document.getElementById("ocultoLista").innerHTML;
     // Si el usuario no ingreso un ID de examen, se muestra un error.
     if (lista == "") {
-        dialog.showErrorBox('Error:', 'Ingrese la carpeta con la lista de alumnos.');
+        dialog.showErrorBox('Error 7:', 'Ingrese la carpeta con la lista de alumnos.');
     }
     else {
         // Si el usuario no nombro al grupo, muestra un error.
         if (plantilla == "") {
-            dialog.showErrorBox('Error:', 'Ingrese la plantilla.');
+            dialog.showErrorBox('Error 8:', 'Ingrese una plantilla.');
         }
         else{
 
@@ -36,7 +36,7 @@ document.getElementById("abrir_plantilla").addEventListener("click", function() 
             PythonShell.run('lista.py', options, function (error, resultados) {
                 // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
                 if (error) {
-                    dialog.showErrorBox('Error:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+                    dialog.showErrorBox('Error INDWRD:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
                     console.log(error);
                     loader.style.opacity = "0";
 				    loader.style.display = "none";
