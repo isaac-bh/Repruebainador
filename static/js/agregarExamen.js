@@ -161,7 +161,15 @@ function agregar_respuestas() {
 }
 
 document.getElementById("agregar_imagen").addEventListener("click", function() {
-    const pathArray = dialog.showOpenDialogSync({properties: ['openFile']});
+    const pathArray = dialog.showOpenDialogSync( {
+        properties: ['openFile'],
+        filters: [
+            {
+                "name": "Imagenes",
+                "extensions": ["png", "jpg", "jpeg"]
+            }
+        ]
+    });
     var ruta_archivo = pathArray[0];
     var vista_previa = document.getElementById("previo");
     vista_previa.setAttribute("src", ruta_archivo);

@@ -103,7 +103,13 @@ function validarExamen() {
 
 document.getElementById("agregar_imagen").addEventListener("click", function () {
 	const pathArray = dialog.showOpenDialogSync({
-		properties: ['openFile']
+		properties: ['openFile'],
+		filters: [
+            {
+                "name": "Imagenes",
+                "extensions": ["png", "jpg", "jpeg"]
+            }
+        ]
 	});
 	var ruta_archivo = pathArray[0];
 	var vista_previa = document.getElementById("previo");

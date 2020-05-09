@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
         var contenedor = document.getElementById("cont_examenes");
 
         if (err) {
-            contenedor.innerHTML = "Error 3: Archivo de respuestas no encontrado.";
+            contenedor.innerHTML = "Error 3: Archivo respuestasExamenes.txt no encontrado.";
         }
         
         var allText = data.toString();

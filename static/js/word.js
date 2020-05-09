@@ -7,52 +7,50 @@ const { dialog } = require('electron').remote;
 // Función que se ejecuta si el usuario da click al boton para abrir una carpeta.
 document.getElementById("abrir_plantilla").addEventListener("click", function() {
     // Se abre un dialogo del sistema para seleccionar una carpeta.
-    const pathArray = dialog.showOpenDialogSync({properties: ['openFile']});
+    const pathArray = dialog.showOpenDialogSync( {
+        properties: ['openFile'],
+        filters: [
+            {
+                "name": "Microsoft Word",
+                "extensions": ["docx", "doc", "dotx"]
+            }
+        ]
+    });
     var plantilla = pathArray[0];
     var lista = document.getElementById("ocultoLista").innerHTML;
-    // Si el usuario no ingreso un ID de examen, se muestra un error.
-    if (lista == "") {
-        dialog.showErrorBox('Error 7:', 'Ingrese la carpeta con la lista de alumnos.');
-    }
-    else {
-        // Si el usuario no nombro al grupo, muestra un error.
-        if (plantilla == "") {
-            dialog.showErrorBox('Error 8:', 'Ingrese una plantilla.');
+   
+    // Opciones para la ejecución de Python.
+    var options = {
+        mode: 'text',
+        pythonPath: 'python',
+        scriptPath: 'python',
+        args: [lista, plantilla]
+    };
+
+    loader.style.display = "block";
+    loader.style.opacity = "1";
+
+    // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.
+    PythonShell.run('lista.py', options, function (error, resultados) {
+        // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
+        if (error) {
+            dialog.showErrorBox('Error INDWRD:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
+            console.log(error);
+            loader.style.opacity = "0";
+            loader.style.display = "none";
         }
-        else{
-
-            // Opciones para la ejecución de Python.
-            var options = {
-                mode: 'text',
-                pythonPath: 'python',
-                scriptPath: 'python',
-                args: [lista, plantilla]
-            };
-
-            loader.style.display = "block";
-		    loader.style.opacity = "1";
-
-            // Se ejecuta Python, la ejecución puede arrojar 2 diferentes cosas, un error o un resultado.
-            PythonShell.run('lista.py', options, function (error, resultados) {
-                // Si existe un error, muestra un mensaje e imprime explicitamente el error en la consola para mayor información.
-                if (error) {
-                    dialog.showErrorBox('Error INDWRD:', 'Consulte el manual de Usuario para ver como corregir este problema o contacte a el desarrollador.');
-                    console.log(error);
-                    loader.style.opacity = "0";
-				    loader.style.display = "none";
-                }
-                // Si devuelve un resultado valido.
-                else {
-                    dialog.showMessageBox({
-                        message: "Examenes generados exitosamente.",
-                        title: "La tarea se completo con exito."
-                    });
-                    loader.style.opacity = "0";
-				    loader.style.display = "none";
-                }
+        // Si devuelve un resultado valido.
+        else {
+            dialog.showMessageBox({
+                message: "Examenes generados exitosamente.",
+                title: "La tarea se completo con exito."
             });
+            loader.style.opacity = "0";
+            loader.style.display = "none";
         }
-    }
+    });
+    
+    
 });
 
 document.getElementById("abrir_lista").addEventListener("click", function() {
