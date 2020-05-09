@@ -103,7 +103,7 @@ def Non_Zero(ruta_carpeta, ide, nombre):
                             num_Contornos = aprox
                             break
 
-                
+
                 base = imagen
                 recortado = escala_Grises
 
@@ -285,7 +285,7 @@ def recortar_imagen(img, columnas):
         fila.paste(r1, (0, 0))
         fila.paste(r2, (0, r1.height))
         fila.save('fila.png')
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Procedimiento para 3 columas o más de 50 preguntas, menor o igual a 75.
     elif columnas == 3:
@@ -329,7 +329,8 @@ def eliminar_residuales(columnas):
 
 def comprobacion_extension(parametroX):
     ext = parametroX.split(".")
-    if ext[1] == "png" or ext[1] == "jpg" or ext[1] == "jpeg":
+    x = len(ext)
+    if ext[x-1] == "png" or ext[x-1] == "jpg" or ext[x-1] == "jpeg":
         return True
     else:
         return False
