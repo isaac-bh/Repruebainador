@@ -158,7 +158,8 @@ def eliminar_residuales():
 
 def comprobacion_extension(parametroX):
     ext = parametroX.split(".")
-    if ext[1] == "png" or ext[1] == "jpg" or ext[1] == "jpeg":
+    x = len(ext)
+    if ext[x-1] == "png" or ext[x-1] == "jpg" or ext[x-1] == "jpeg":
         return True
     else:
         return False
