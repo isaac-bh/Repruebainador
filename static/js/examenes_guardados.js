@@ -1,26 +1,26 @@
 const { dialog } = require('electron').remote;
-const fs = require("fs");
+const fileSystem = require("fs");
 
 window.addEventListener('load', function() {
     // Asynchronous read
-    fs.readFile('./python/respuestasExamenes.txt', function (err, data) {
+    fileSystem.readFile('./python/respuestasExamenes.txt', function (err, data) {
         var contenedor = document.getElementById("cont_examenes");
 
         if (err) {
             contenedor.innerHTML = "Error 3: Archivo respuestasExamenes.txt no encontrado.";
         }
         
-        var allText = data.toString();
-        var lineas = allText.split("\n");
+        var todoTexto = data.toString();
+        var lineas = todoTexto.split("\n");
                 
         for(var i = 0; i < lineas.length; i++) {
             var nombre = lineas[i].split("$");      // Aqui se aprovecha el campo [1].
             var id = lineas[i].split(":");          // Aqui se aprovecha el campo [0].
             var auxcolum = lineas[i].split(".");    // Aqui se aprovecha el campo [1].
-            var colum = auxcolum[1].split("$");     // Aqui se aprovecha el campo [0].
+            var columnas = auxcolum[1].split("$");     // Aqui se aprovecha el campo [0].
             
 
-            if (colum[0] == "1") {
+            if (columnas[0] == "1") {
                 var inyeccion = '<div class="examen col1" onclick="copy(\''+id[0]+'\');">' + 
                     '<p class="nombre_examen">'+ nombre[1] +'</p>' + 
                     '<p class="id_examen">'+ id[0] +'</p>' +
@@ -29,7 +29,7 @@ window.addEventListener('load', function() {
                 contenedor.innerHTML += inyeccion;
             }
 
-            if (colum[0] == "2") {
+            if (columnas[0] == "2") {
                 var inyeccion = '<div class="examen col2" onclick="copy(\''+id[0]+'\');">' + 
                     '<p class="nombre_examen">'+ nombre[1] +'</p>' + 
                     '<p class="id_examen">'+ id[0] +'</p>' +
@@ -38,7 +38,7 @@ window.addEventListener('load', function() {
                 contenedor.innerHTML += inyeccion;
             }
 
-            if (colum[0] == "3") {
+            if (columnas[0] == "3") {
                 var inyeccion = '<div class="examen col3" onclick="copy(\''+id[0]+'\');">' + 
                     '<p class="nombre_examen">'+ nombre[1] +'</p>' + 
                     '<p class="id_examen">'+ id[0] +'</p>' +
@@ -51,15 +51,15 @@ window.addEventListener('load', function() {
 });
 
 
-function copy(text) {
-    var dummy = document.createElement("textarea");
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
+function copy(identificador) {
+    var selectAux = document.createElement("textarea");
+    document.body.appendChild(selectAux);
+    selectAux.value = identificador;
+    selectAux.select();
     document.execCommand("copy");
-    document.body.removeChild(dummy);
+    document.body.removeChild(selectAux);
     dialog.showMessageBox({
-        message: "Se ha copiado el ID: " + text, 
+        message: "Se ha copiado el ID: " + identificador, 
         title: "Copiado con exito."
     })
 }

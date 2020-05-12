@@ -57,126 +57,129 @@ def Non_Zero(ruta_carpeta, ide, nombre):
             # Inicialización de imagen con tamaño corregido.
             compr_ext = comprobacion_extension(str(imagen))
             if compr_ext == True:
-                img = Image.open(imagen)
-                new_img = img.resize((1552,2000))
-                new_img.save('ajuste.png','png')
+                try:
+                    img = Image.open(imagen)
+                    new_img = img.resize((1552,2000))
+                    new_img.save('ajuste.png','png')
 
-                #Recorte de la parte del nombre
-                img = cv2.imread('ajuste.png')
-                crop_img = img[230:310, 200:1300]
-                cv2.imwrite('nombre.png', crop_img)
+                    #Recorte de la parte del nombre
+                    img = cv2.imread('ajuste.png')
+                    crop_img = img[230:310, 200:1300]
+                    cv2.imwrite('nombre.png', crop_img)
 
-                #Recorte del codigo
-                crop_img = img[305:365, 200:450]
-                cv2.imwrite('codigo.png', crop_img)
+                    #Recorte del codigo
+                    crop_img = img[305:365, 200:450]
+                    cv2.imwrite('codigo.png', crop_img)
 
-                #Leer el nombre de quien hizo el examen
-                nombre = obtener_nombre()
-                codigo = obtener_codigo()
-                respuestas_Correctas, columnas = obtener_respuestas()
-                recortar_imagen(img, columnas)
+                    #Leer el nombre de quien hizo el examen
+                    nombre = obtener_nombre()
+                    codigo = obtener_codigo()
+                    respuestas_Correctas, columnas = obtener_respuestas()
+                    recortar_imagen(img, columnas)
 
-                # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
-                imagen = cv2.imread("fila.png")
-                escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
-                desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
-                bordeado = cv2.Canny(desenfocado, 75, 200)
+                    # A cargar la imagen, convertimos a escala de grises, le damos un desenfoque, y encontramos los bordes.
+                    imagen = cv2.imread("fila.png")
+                    escala_Grises = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+                    desenfocado = cv2.GaussianBlur(escala_Grises, (5, 5), 0)
+                    bordeado = cv2.Canny(desenfocado, 75, 200)
 
-                # Encontramos contornos en el "mapa de contornos", inicializamos el contorno de la hoja para darle perspectiva.
-                contornos = cv2.findContours(bordeado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                contornos = imutils.grab_contours(contornos)
-                num_Contornos = None
+                    # Encontramos contornos en el "mapa de contornos", inicializamos el contorno de la hoja para darle perspectiva.
+                    contornos = cv2.findContours(bordeado.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    contornos = imutils.grab_contours(contornos)
+                    num_Contornos = None
 
-                # Nos aseguramos de que exista minimo 1 contorno
-                if len(contornos) > 0:
-                    # Ordenamos los contornos en orden de tamaño, orden descendente.
-                    contornos = sorted(contornos, key=cv2.contourArea, reverse=True)
+                    # Nos aseguramos de que exista minimo 1 contorno
+                    if len(contornos) > 0:
+                        # Ordenamos los contornos en orden de tamaño, orden descendente.
+                        contornos = sorted(contornos, key=cv2.contourArea, reverse=True)
 
-                    # Bucle sobre los contornos ordenados.
+                        # Bucle sobre los contornos ordenados.
+                        for c in contornos:
+                            # Nos aproximamos a el contorno.
+                            perimetro = cv2.arcLength(c, True)
+                            aprox = cv2.approxPolyDP(c, 0.02 * perimetro, True)
+
+                            # Si tenemos 4 puntos en el contorno, encontramos la hoja, finaliza el bucle.
+                            if len(aprox) == 4:
+                                num_Contornos = aprox
+                                break
+
+
+                    base = imagen
+                    recortado = escala_Grises
+
+                    # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
+                    umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+
+                    # Encontramos contornos en la imagen binarizada, inicializamos la lista de contornos que corresponden a las preguntas.
+                    contornos = cv2.findContours(umbral.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    contornos = imutils.grab_contours(contornos)
+                    preguntas_Contorno = []
+
+                    # Bucle a traves de los contornos.
                     for c in contornos:
-                        # Nos aproximamos a el contorno.
-                        perimetro = cv2.arcLength(c, True)
-                        aprox = cv2.approxPolyDP(c, 0.02 * perimetro, True)
+                        # Calculamos el cuadro delimitador del contorno, luego usamos el cuadro delimitador para obtener la relación de aspecto.
+                        (x, y, w, h) = cv2.boundingRect(c)
+                        ar = w / float(h)
 
-                        # Si tenemos 4 puntos en el contorno, encontramos la hoja, finaliza el bucle.
-                        if len(aprox) == 4:
-                            num_Contornos = aprox
-                            break
+                        # Para etiquetar el contorno como una pregunta, la región debe ser lo suficientemente ancha,
+                        # lo suficientemente alta y tener una relación de aspecto aproximadamente igual a 1.
+                        if w >= 20 and h >= 20 and ar >= 0.9 and ar <= 1.1:
+                            preguntas_Contorno.append(c)
 
+                    # Ordenamos los contornos de las preguntas de arriba a abajo, luego inicializamos el número total de respuestas correctas.
+                    preguntas_Contorno = contours.sort_contours(preguntas_Contorno, method="top-to-bottom")[0]
+                    correctas = 0
 
-                base = imagen
-                recortado = escala_Grises
+                    # Cada pregunta tiene 5 respuestas posibles, para recorrer la pregunta en lotes de 5.
+                    for (q, i) in enumerate(np.arange(0, len(preguntas_Contorno), 5)):
+                        # Ordenar los contornos de la pregunta actual de izquierda a derecha, luego inicializar el índice de la respuesta contestada.
+                        contornos = contours.sort_contours(preguntas_Contorno[i:i + 5])[0]
+                        respondida = None
 
-                # Aplicacmos metodo de Umbral de Otsu para binarizar la imagen.
-                umbral = cv2.threshold(recortado, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+                        # Recorremos los contornos ordenados.
+                        for (j, c) in enumerate(contornos):
+                            # Dibujamos un contorno en el inciso de la pregunta.
+                            mascara_Recorte = np.zeros(umbral.shape, dtype="uint8")
+                            cv2.drawContours(mascara_Recorte, [c], -1, 255, -1)
 
-                # Encontramos contornos en la imagen binarizada, inicializamos la lista de contornos que corresponden a las preguntas.
-                contornos = cv2.findContours(umbral.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                contornos = imutils.grab_contours(contornos)
-                preguntas_Contorno = []
+                            # Detectamos pixeles no negativos para identificar el inciso contestado.
+                            mascara_Recorte = cv2.bitwise_and(umbral, umbral, mask=mascara_Recorte)
+                            total = cv2.countNonZero(mascara_Recorte)
 
-                # Bucle a traves de los contornos.
-                for c in contornos:
-                    # Calculamos el cuadro delimitador del contorno, luego usamos el cuadro delimitador para obtener la relación de aspecto.
-                    (x, y, w, h) = cv2.boundingRect(c)
-                    ar = w / float(h)
+                            # Si la respuesta actual tiene el mayor numero de pixeles no negativos la marcamos como el inciso contestado.
+                            if respondida is None or total > respondida[0]:
+                                respondida = (total, j)
 
-                    # Para etiquetar el contorno como una pregunta, la región debe ser lo suficientemente ancha,
-                    # lo suficientemente alta y tener una relación de aspecto aproximadamente igual a 1.
-                    if w >= 20 and h >= 20 and ar >= 0.9 and ar <= 1.1:
-                        preguntas_Contorno.append(c)
+                        # Se elige el color de contorno para respuesta, en este caso es por si es incorrecta.
+                        color = (0, 0, 255)
+                        k = respuestas_Correctas[q]
 
-                # Ordenamos los contornos de las preguntas de arriba a abajo, luego inicializamos el número total de respuestas correctas.
-                preguntas_Contorno = contours.sort_contours(preguntas_Contorno, method="top-to-bottom")[0]
-                correctas = 0
+                        # Checamos si el inciso contestado es correcto.
+                        if k == respondida[1]:
+                            #Si es correcto, cambiamos el color a verde y aumentamos el contador de respuestas correctas.
+                            color = (0, 255, 0)
+                            correctas += 1
 
-                # Cada pregunta tiene 5 respuestas posibles, para recorrer la pregunta en lotes de 5.
-                for (q, i) in enumerate(np.arange(0, len(preguntas_Contorno), 5)):
-                    # Ordenar los contornos de la pregunta actual de izquierda a derecha, luego inicializar el índice de la respuesta contestada.
-                    contornos = contours.sort_contours(preguntas_Contorno[i:i + 5])[0]
-                    respondida = None
+                        # Dibujamos el contorno en el inciso correcto.
+                        cv2.drawContours(base, [contornos[k]], -1, color, 3)
 
-                    # Recorremos los contornos ordenados.
-                    for (j, c) in enumerate(contornos):
-                        # Dibujamos un contorno en el inciso de la pregunta.
-                        mascara_Recorte = np.zeros(umbral.shape, dtype="uint8")
-                        cv2.drawContours(mascara_Recorte, [c], -1, 255, -1)
+                    # En base a el numero de preguntas y a los aciertos, calculamos su calificación.
+                    calificacion = (correctas / len(respuestas_Correctas)) * 100
 
-                        # Detectamos pixeles no negativos para identificar el inciso contestado.
-                        mascara_Recorte = cv2.bitwise_and(umbral, umbral, mask=mascara_Recorte)
-                        total = cv2.countNonZero(mascara_Recorte)
+                    calificacion1 = str(calificacion)
 
-                        # Si la respuesta actual tiene el mayor numero de pixeles no negativos la marcamos como el inciso contestado.
-                        if respondida is None or total > respondida[0]:
-                            respondida = (total, j)
+                    #Se guardan los datos en el csv
+                    filas = codigo + "," + nombre + "," + calificacion1 + "\n"
+                    csv.write(filas)
 
-                    # Se elige el color de contorno para respuesta, en este caso es por si es incorrecta.
-                    color = (0, 0, 255)
-                    k = respuestas_Correctas[q]
-
-                    # Checamos si el inciso contestado es correcto.
-                    if k == respondida[1]:
-                        #Si es correcto, cambiamos el color a verde y aumentamos el contador de respuestas correctas.
-                        color = (0, 255, 0)
-                        correctas += 1
-
-                    # Dibujamos el contorno en el inciso correcto.
-                    cv2.drawContours(base, [contornos[k]], -1, color, 3)
-
-                # En base a el numero de preguntas y a los aciertos, calculamos su calificación.
-                calificacion = (correctas / len(respuestas_Correctas)) * 100
-
-                calificacion1 = str(calificacion)
-
-                #Se guardan los datos en el csv
-                filas = codigo + "," + nombre + "," + calificacion1 + "\n"
-                csv.write(filas)
-
-                print(calificacion)
-                print(codigo)
-                print(nombre)
-                eliminar_residuales(columnas)
-                sys.stdout.flush()
+                    print(calificacion)
+                    print(codigo)
+                    print(nombre)
+                    eliminar_residuales(columnas)
+                    sys.stdout.flush()
+                except PIL.UnidentifiedImageError as e:
+                    pass
             else:
                 pass
 
