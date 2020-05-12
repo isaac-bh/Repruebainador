@@ -29,8 +29,8 @@ def Non_Zero(ruta_carpeta,plantilla):
     homedir = os.path.expanduser("~")
     directorio_documentos = homedir + "\\Documents\\Repruebainador\\Words\\"
     Path = pathlib.Path(directorio_documentos)
-    for imagen in Path.iterdir():
-        remove(imagen)
+    for word in Path.iterdir():
+        remove(word)
 
     Path = pathlib.Path(ruta_carpeta)
     for imagen in Path.iterdir():
@@ -51,18 +51,15 @@ def Non_Zero(ruta_carpeta,plantilla):
             output = pytesseract.image_to_string(PIL.Image.open('aver.png').convert("RGB"), lang='eng', config='--psm 4 --oem 3')
 
             if output == 'Dias:':
-
                 
                 img = cv2.imread('ajuste.png')
                 crop_img = img[850:3350, 270:1410]
                 cv2.imwrite('recorte.png', crop_img)
                 primero = 10
                 segundo = 80
-                contador = 1
                 output = 'uno'
                 while output != "":
                     
-                    contador1 = str(contador)
 
                     img = cv2.imread('recorte.png')
                     crop_img = img[primero:segundo, 10:220]
@@ -96,7 +93,6 @@ def Non_Zero(ruta_carpeta,plantilla):
 
                     primero = primero + 73
                     segundo = segundo + 73
-                    contador = contador + 1
 
             else:
 
@@ -107,11 +103,10 @@ def Non_Zero(ruta_carpeta,plantilla):
                 
                 primero = 10
                 segundo = 80
-                contador = 1
+
                 output = 'uno'
                 while output != "":
-                    
-                    contador1 = str(contador)
+                  
 
                     img = cv2.imread('recorte.png')
                     crop_img = img[primero:segundo, 10:220]
@@ -144,7 +139,6 @@ def Non_Zero(ruta_carpeta,plantilla):
 
                     primero = primero + 73
                     segundo = segundo + 73
-                    contador = contador + 1
         else:
             pass
 
