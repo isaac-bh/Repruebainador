@@ -41,7 +41,7 @@ h1 {
     margin: auto;
 }
 
-#obtenereExamen, #validarOperacion {
+#obtenereExamen, #validarOperacion, #restablecer {
 	background-color: #103875;
 	padding: 1rem;
 	border-radius: 1rem;

@@ -116,6 +116,7 @@ function obtener_respuestas() {
 
                 // Cuando termina de inyectar el examen a la interfaz, se agrega un botón para que confirme que si son las respuestas que esperaba.
                 contenedor.innerHTML += '<span id="validarOperacion" onclick="agregar_respuestas();">¡Si! es correcto</span>';
+                contenedor.innerHTML += '<span id="restablecer" onclick="reload();">¡No! intentar otra vez</span>';
                 document.getElementById('auxRespuestas').innerHTML = respuestas_extraidas;
                 imagen_examen.innerHTML += '<img id="imagen" src="'+ ruta_imagen +'" style="width: 100%; height: 100%;"></img>'
 
@@ -175,3 +176,7 @@ document.getElementById("agregar_imagen").addEventListener("click", function() {
     vista_previa.setAttribute("src", ruta_archivo);
     document.getElementById("oculto").innerHTML = ruta_archivo;
 });
+
+function reload() {
+    location.href ="agregarExamen.html";
+}

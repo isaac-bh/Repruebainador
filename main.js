@@ -23,7 +23,7 @@ function crear_ventana () {
     mainWindow.loadFile('./templates/index.html');
 }
 
-// Cuando la aplicación este lista, se ejectura la función createWindow.
+// Cuando la aplicación este lista, se ejectura la función crear_ventana.
 app.on('ready', crear_ventana);
 
 // Cuando se cierran todas las ventanas en ejecución, entra a esta función:
