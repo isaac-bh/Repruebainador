@@ -162,6 +162,46 @@ body {
     justify-content: space-between;
 }
 
+#overlay{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.popup{
+    background: #118af7;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    font-family: sans-serif;
+    padding: 3em 1em;
+    text-align: center;
+    width: 32em;
+}
+
+.btn-r{
+    border-radius: 25px;
+    margin: 0 3rem;
+    padding: 0 1rem;
+    height: 2rem;
+    line-height: 2rem;
+    border: none;
+    color: #000;
+    background: #86cce8;
+    border-radius: 3px;
+}
+
+.btn-r:hover{
+    background: #2f87ab;
+}
+
 /* - - - - - - - - - Checkbox custom - - - - - - - - - - */
 
 main {
