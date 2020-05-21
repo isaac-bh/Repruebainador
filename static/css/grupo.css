@@ -58,6 +58,8 @@ body {
 
 #calificados {
     width: 90%;
+    height:72.5vh;
+    overflow: scroll;
     margin: auto;
     display: flex;
     justify-content: space-around;
