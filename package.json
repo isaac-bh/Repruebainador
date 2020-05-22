@@ -1,7 +1,7 @@
 {
   "name": "Repruebainador",
-  "version": "2.3.0",
-  "description": "Smart solution for lazy people",
+  "version": "1.0.0",
+  "description": "Release the grades.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -9,7 +9,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/isaac-bh/UI_Repruebainador",
+  "repository": "",
   "keywords": [
     "Examenes",
     "Visión Artificial",

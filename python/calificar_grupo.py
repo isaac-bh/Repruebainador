@@ -175,6 +175,8 @@ def Non_Zero(ruta_carpeta, ide, nombre):
                 sys.stdout.flush()
             except PIL.UnidentifiedImageError as e:
                 pass
+            except IndexError as a:
+                pass
         else:
             pass
 
