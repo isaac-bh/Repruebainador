@@ -1,4 +1,3 @@
-### Asociación De Idiotas Dispuestos A Superarse presenta:
 # EL REPRUEBAINADOR
 *Solución inteligente para gente floja*
 
