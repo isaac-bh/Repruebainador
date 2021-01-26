@@ -1,5 +1,5 @@
 # EL REPRUEBAINADOR
-*Solución inteligente para gente floja*
+*Este software fue creado con el fin de mejorar los procesos en la Universidad de Guadalajara, por lo que es publicado bajo una licencia GNU Public(GPL), cualquier modificación de este programa debera de ser publicado bajo el mismo termino.*
 
 **ATENCIÓN:** para ejecutar la interfaz grafica es necesario predisponer de Google Chrome, Chromium o Microsoft Edge basado en Chromium.
 
