@@ -5,7 +5,7 @@
 
 ---
 
-Guia para instalar esta madre:
+Guia para instalar en entorno de desarrollo:
 1. Instalar dependencias de npm: 
 
 >npm install
