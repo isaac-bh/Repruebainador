@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "electron": "^22.3.25",
-    "electron-builder": "^22.5.1"
+    "electron-builder": "^24.6.4"
   },
   "dependencies": {
     "python-shell": "^1.0.8",
